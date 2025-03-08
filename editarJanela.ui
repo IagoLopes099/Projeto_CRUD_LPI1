@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>BuscarJanela</class>
+ <widget class="QDialog" name="BuscarJanela">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>950</width>
+    <height>650</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>950</width>
+    <height>650</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>950</width>
+    <height>650</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Editar usuário</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Projeto_Prog1.qrc">
+    <normaloff>:/debug/editarWhite.png</normaloff>:/debug/editarWhite.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog{
+	background-color: rgba(45,45,45,255);
+}</string>
+  </property>
+  <widget class="QFrame" name="frameEditando">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>891</width>
+     <height>611</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QFrame{
+	background-color: rgba(30,30,30,255);
+	border-radius: 20px;
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Plain</enum>
+   </property>
+   <widget class="QLabel" name="NomeEditando_2">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>20</y>
+      <width>289</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	font-family: Open Sans Light;
+	font-size: 20px;
+	color: #FFF;
+	
+}</string>
+    </property>
+    <property name="text">
+     <string>Nome</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="cpfEditando">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>170</y>
+      <width>351</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Open Sans 61</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit{
+	font-family: Open Sans Light;
+	border: 2px solid rgb(37, 39, 48);
+	border-radius: 16px;
+	color: #FFF;
+	padding-left: 20px;
+	padding-right: 20px; 
+	background-color: rgb(34, 36, 44);
+}</string>
+    </property>
+    <property name="inputMask">
+     <string>999.999.999-99</string>
+    </property>
+    <property name="maxLength">
+     <number>14</number>
+    </property>
+    <property name="placeholderText">
+     <string>CPF</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="NascimentoEditPage">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>230</y>
+      <width>289</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	font-family: Open Sans Light;
+	font-size: 20px;
+	color: #FFF;
+	
+}</string>
+    </property>
+    <property name="text">
+     <string>Data de nascimento</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="CPFEditando">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>120</y>
+      <width>289</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	font-family: Open Sans Light;
+	font-size: 20px;
+	color: #FFF;
+	
+}</string>
+    </property>
+    <property name="text">
+     <string>CPF</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="NomeEditando">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>70</y>
+      <width>351</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Open Sans 61</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit{
+	font-family: Open Sans Light;
+	border: 2px solid rgb(37, 39, 48);
+	border-radius: 16px;
+	color: #FFF;
+	padding-left: 20px;
+	padding-right: 20px; 
+	background-color: rgb(34, 36, 44);
+}
+
+QLiteEdit:hover {
+	border: 2px solid rgb(48, 50, 62);
+}
+
+QLiteEdit:focus {
+	border: 2px solid rgb(85, 170, 255);
+	background-color: rgb(43, 45, 56);
+}
+</string>
+    </property>
+    <property name="maxLength">
+     <number>200</number>
+    </property>
+    <property name="placeholderText">
+     <string>Nome completo</string>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="EditarButton">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>530</y>
+      <width>171</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/*QPushButton{
+	border-radius: 10px;
+	background-color: rgba(60,60,60,255);
+}
+
+QPushButton:hover {
+	border-radius: 10px;
+	background-color: rgba(140,140,140,255);
+}
+
+QPushButton:pressed {
+	border-radius: 10px;
+	background-color: rgb(57, 57, 57);
+	
+}
+*/
+
+QPushButton{
+	font-family: Open Sans Light;
+	font-size:18px ;
+	color: #FFF;
+	border-radius: 10px;
+	background-color: rgba(13,117,190,255);
+}
+
+QPushButton:hover {
+	border-radius: 10px;
+	background-color: rgb(85,150,190);
+}
+
+QPushButton:pressed {
+	border-radius: 10px;
+	background-color: rgb(28,81,115);
+	
+}</string>
+    </property>
+    <property name="text">
+     <string>Editar</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="generoEditando">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>70</y>
+      <width>261</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>Masculino</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Feminino</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Outros</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="GeneroEditando">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>20</y>
+      <width>289</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	font-family: Open Sans Light;
+	font-size: 20px;
+	color: #FFF;
+	
+}</string>
+    </property>
+    <property name="text">
+     <string>Gênero</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="SubequipeEditando">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>130</y>
+      <width>289</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	font-family: Open Sans Light;
+	font-size: 20px;
+	color: #FFF;
+	
+}</string>
+    </property>
+    <property name="text">
+     <string>Sub-equipe</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>190</y>
+      <width>241</width>
+      <height>160</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QRadioButton" name="AdminCbEdit">
+       <property name="text">
+        <string>Admin</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="PowertrainCbEdit">
+       <property name="text">
+        <string>Powertrain</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="DinamicaCbEdit">
+       <property name="text">
+        <string>Dinâmica veicular</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="DrivetrainCbEdit">
+       <property name="text">
+        <string>Drivetrain</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="EletricaCbEdit">
+       <property name="text">
+        <string>Elétrica</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="cancelarEditButton">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>530</y>
+      <width>171</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	font-family: Open Sans Light;
+	font-size:18px ;
+	color: #FFF;
+	border-radius: 10px;
+	background-color: rgba(60,60,60,255);
+}
+
+QPushButton:hover {
+	border-radius: 10px;
+	background-color: rgba(78,78,79,255);
+}
+
+QPushButton:pressed {
+	border-radius: 10px;
+	background-color: rgba(45,45,45,255);
+	
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>Cancelar</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="EmailEdit">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>390</y>
+      <width>351</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Open Sans 61</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit{
+	font-family: Open Sans Light;
+	border: 2px solid rgb(37, 39, 48);
+	border-radius: 16px;
+	color: #FFF;
+	padding-left: 20px;
+	padding-right: 20px; 
+	background-color: rgb(34, 36, 44);
+}
+
+QLiteEdit:hover {
+	border: 2px solid rgb(48, 50, 62);
+}
+
+QLiteEdit:focus {
+	border: 2px solid rgb(85, 170, 255);
+	background-color: rgb(43, 45, 56);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>200</number>
+    </property>
+    <property name="placeholderText">
+     <string>Email</string>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="telefoneEdit">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>420</y>
+      <width>271</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Open Sans 61</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit{
+	font-family: Open Sans Light;
+	border: 2px solid rgb(37, 39, 48);
+	border-radius: 16px;
+	color: #FFF;
+	padding-left: 20px;
+	padding-right: 20px; 
+	background-color: rgb(34, 36, 44);
+}
+
+QLiteEdit:hover {
+	border: 2px solid rgb(48, 50, 62);
+}
+
+QLiteEdit:focus {
+	border: 2px solid rgb(85, 170, 255);
+	background-color: rgb(43, 45, 56);
+}
+</string>
+    </property>
+    <property name="inputMask">
+     <string>(99) 9 9999-9999</string>
+    </property>
+    <property name="text">
+     <string>()  -</string>
+    </property>
+    <property name="maxLength">
+     <number>16</number>
+    </property>
+    <property name="placeholderText">
+     <string>Telefone</string>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="EmailEditando">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>340</y>
+      <width>289</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	font-family: Open Sans Light;
+	font-size: 20px;
+	color: #FFF;
+	
+}</string>
+    </property>
+    <property name="text">
+     <string>Email</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="TelefoneEditando">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>370</y>
+      <width>289</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	font-family: Open Sans Light;
+	font-size: 20px;
+	color: #FFF;
+	
+}</string>
+    </property>
+    <property name="text">
+     <string>Telefone</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="dataEditando">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>290</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Open Sans 61</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit{
+	font-family: Open Sans Light;
+	border: 2px solid rgb(37, 39, 48);
+	border-radius: 16px;
+	color: #FFF;
+	padding-left: 20px;
+	padding-right: 20px; 
+	background-color: rgb(34, 36, 44);
+}
+
+QLiteEdit:hover {
+	border: 2px solid rgb(48, 50, 62);
+}
+
+QLiteEdit:focus {
+	border: 2px solid rgb(85, 170, 255);
+	background-color: rgb(43, 45, 56);
+}
+</string>
+    </property>
+    <property name="inputMask">
+     <string>99/99/9999</string>
+    </property>
+    <property name="text">
+     <string>//</string>
+    </property>
+    <property name="maxLength">
+     <number>10</number>
+    </property>
+    <property name="placeholderText">
+     <string>Nascimento</string>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>false</bool>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="Projeto_Prog1.qrc"/>
+ </resources>
+ <connections/>
+</ui>

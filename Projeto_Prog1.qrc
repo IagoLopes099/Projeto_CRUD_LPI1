@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>debug/adicionar.png</file>
+        <file>debug/home.png</file>
+        <file>debug/buscar.png</file>
+        <file>debug/deletar.png</file>
+        <file>debug/editar.png</file>
+        <file>debug/homeWhite.png</file>
+        <file>debug/buscarWhite.png</file>
+        <file>debug/atualizarWhite.png</file>
+        <file>debug/editarWhite.png</file>
+        <file>debug/deletarWhite.png</file>
+        <file>debug/grafico.png</file>
+        <file>debug/atividades.png</file>
+        <file>debug/promocaorebaixamento.png</file>
+        <file>debug/promocaorebaixamentoWhite.png</file>
+    </qresource>
+</RCC>

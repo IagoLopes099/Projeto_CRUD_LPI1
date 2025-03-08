@@ -1,0 +1,1040 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>680</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1200</width>
+    <height>680</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1200</width>
+    <height>680</height>
+   </size>
+  </property>
+  <property name="acceptDrops">
+   <bool>true</bool>
+  </property>
+  <property name="windowTitle">
+   <string>Formula UFPB</string>
+  </property>
+  <property name="windowIcon">
+   <iconset theme="QIcon::ThemeIcon::AddressBookNew"/>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow{
+	background-color: rgba(45,45,45,255);
+}</string>
+  </property>
+  <property name="animated">
+   <bool>true</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>191</width>
+      <height>651</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame{
+	background-color: rgba(30,30,30,255);
+	border-radius: 20px;
+}
+
+QPushButton{
+	color: #FFF;
+	border-radius: 10px;
+	background-color: rgba(13,117,190,255);
+}
+
+QPushButton:hover {
+	border-radius: 10px;
+	background-color: rgb(85,150,190);
+}
+
+QPushButton:pressed {
+	border-radius: 10px;
+	background-color: rgb(28,81,115);
+	
+}
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Orientation::Vertical</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Policy::Preferred</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>10</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="homeButton">
+       <property name="text">
+        <string>Início</string>
+       </property>
+       <property name="icon">
+        <iconset resource="Projeto_Prog1.qrc">
+         <normaloff>:/debug/home.png</normaloff>:/debug/home.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Orientation::Vertical</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Policy::Preferred</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="CadastrarButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	height: 34px;
+}</string>
+       </property>
+       <property name="text">
+        <string>Cadastrar</string>
+       </property>
+       <property name="icon">
+        <iconset resource="Projeto_Prog1.qrc">
+         <normaloff>:/debug/adicionar.png</normaloff>:/debug/adicionar.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>26</width>
+         <height>26</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Orientation::Vertical</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Policy::Preferred</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>10</width>
+         <height>10</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="CadastrarButton_2">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	height: 34px;
+}</string>
+       </property>
+       <property name="text">
+        <string>Relatórios</string>
+       </property>
+       <property name="icon">
+        <iconset resource="Projeto_Prog1.qrc">
+         <normaloff>:/debug/grafico.png</normaloff>:/debug/grafico.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>26</width>
+         <height>26</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Orientation::Vertical</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Policy::Preferred</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>10</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="CadastrarButton_3">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	height: 34px;
+}</string>
+       </property>
+       <property name="text">
+        <string>Atividades</string>
+       </property>
+       <property name="icon">
+        <iconset resource="Projeto_Prog1.qrc">
+         <normaloff>:/debug/atividades.png</normaloff>:/debug/atividades.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Orientation::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>315</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QStackedWidget" name="Janelas">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>10</y>
+      <width>961</width>
+      <height>651</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="HomePage">
+     <widget class="QTableWidget" name="listarMembros">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>70</y>
+        <width>900</width>
+        <height>581</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTableWidget{
+	background-color: rgba(30,30,30,255);
+	border-radius: 10px;
+
+}</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="NomeBuscarHP">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>10</y>
+        <width>461</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Open Sans 61</family>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit{
+	font-family: Open Sans Light;
+	border: 2px solid rgb(37, 39, 48);
+	border-radius: 16px;
+	color: #FFF;
+	padding-left: 20px;
+	padding-right: 20px; 
+	background-color: rgb(34, 36, 44);
+}
+
+QLiteEdit:hover {
+	border: 2px solid rgb(48, 50, 62);
+}
+
+QLiteEdit:focus {
+	border: 2px solid rgb(85, 170, 255);
+	background-color: rgb(43, 45, 56);
+}
+</string>
+      </property>
+      <property name="maxLength">
+       <number>200</number>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+      <property name="placeholderText">
+       <string>Nome usuário</string>
+      </property>
+      <property name="clearButtonEnabled">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BuscarButtonHP">
+      <property name="geometry">
+       <rect>
+        <x>880</x>
+        <y>10</y>
+        <width>61</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	/*color: #FFF;*/
+	border-radius: 10px;
+	background-color: rgba(60,60,60,255);
+}
+
+QPushButton:hover {
+	border-radius: 10px;
+	background-color: rgba(78,78,79,255);
+}
+
+QPushButton:pressed {
+	border-radius: 10px;
+	background-color: rgba(45,45,45,255);
+	
+}
+
+</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="Projeto_Prog1.qrc">
+        <normaloff>:/debug/buscarWhite.png</normaloff>:/debug/buscarWhite.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="AtualizarButtonHP">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>10</y>
+        <width>61</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	/*color: #FFF;*/
+	border-radius: 10px;
+	background-color: rgba(60,60,60,255);
+}
+
+QPushButton:hover {
+	border-radius: 10px;
+	background-color: rgba(78,78,79,255);
+}
+
+QPushButton:pressed {
+	border-radius: 10px;
+	background-color: rgba(45,45,45,255);
+	
+}
+
+</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="Projeto_Prog1.qrc">
+        <normaloff>:/debug/atualizarWhite.png</normaloff>:/debug/atualizarWhite.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="EditarButtonHP">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>10</y>
+        <width>101</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	color: #FFF;
+	border-radius: 10px;
+	background-color: rgba(60,60,60,255);
+}
+
+QPushButton:hover {
+	border-radius: 10px;
+	background-color: rgba(78,78,79,255);
+}
+
+QPushButton:pressed {
+	border-radius: 10px;
+	background-color: rgba(45,45,45,255);
+	
+}
+
+</string>
+      </property>
+      <property name="text">
+       <string>Editar</string>
+      </property>
+      <property name="icon">
+       <iconset resource="Projeto_Prog1.qrc">
+        <normaloff>:/debug/editarWhite.png</normaloff>:/debug/editarWhite.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="DeletarButtonHP">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>10</y>
+        <width>111</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	color: #FFF;
+	border-radius: 10px;
+	background-color: rgba(60,60,60,255);
+}
+
+QPushButton:hover {
+	border-radius: 10px;
+	background-color: rgba(78,78,79,255);
+}
+
+QPushButton:pressed {
+	border-radius: 10px;
+	background-color: rgba(45,45,45,255);
+	
+}
+
+</string>
+      </property>
+      <property name="text">
+       <string>Deletar</string>
+      </property>
+      <property name="icon">
+       <iconset resource="Projeto_Prog1.qrc">
+        <normaloff>:/debug/deletarWhite.png</normaloff>:/debug/deletarWhite.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="CadastroPage">
+     <widget class="QFrame" name="frame_2">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>20</y>
+        <width>891</width>
+        <height>611</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame{
+	background-color: rgba(30,30,30,255);
+	border-radius: 20px;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Plain</enum>
+      </property>
+      <widget class="QLabel" name="NomeCadastroPage">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>20</y>
+         <width>289</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LayoutDirection::LeftToRight</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	font-family: Open Sans Light;
+	font-size: 20px;
+	color: #FFF;
+	
+}</string>
+       </property>
+       <property name="text">
+        <string>Nome</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="CPFEditLine">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>170</y>
+         <width>351</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Open Sans 61</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	font-family: Open Sans Light;
+	border: 2px solid rgb(37, 39, 48);
+	border-radius: 16px;
+	color: #FFF;
+	padding-left: 20px;
+	padding-right: 20px; 
+	background-color: rgb(34, 36, 44);
+}</string>
+       </property>
+       <property name="inputMask">
+        <string notr="true">999.999.999-99</string>
+       </property>
+       <property name="text">
+        <string>..-</string>
+       </property>
+       <property name="maxLength">
+        <number>14</number>
+       </property>
+       <property name="placeholderText">
+        <string>CPF</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="NascimentoCadastroPage">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>230</y>
+         <width>289</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	font-family: Open Sans Light;
+	font-size: 20px;
+	color: #FFF;
+	
+}</string>
+       </property>
+       <property name="text">
+        <string>Data de nascimento</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="CPFCadastroPage">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>120</y>
+         <width>289</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	font-family: Open Sans Light;
+	font-size: 20px;
+	color: #FFF;
+	
+}</string>
+       </property>
+       <property name="text">
+        <string>CPF</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="NomeEditLine">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>70</y>
+         <width>351</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Open Sans 61</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	font-family: Open Sans Light;
+	border: 2px solid rgb(37, 39, 48);
+	border-radius: 16px;
+	color: #FFF;
+	padding-left: 20px;
+	padding-right: 20px; 
+	background-color: rgb(34, 36, 44);
+}
+
+QLiteEdit:hover {
+	border: 2px solid rgb(48, 50, 62);
+}
+
+QLiteEdit:focus {
+	border: 2px solid rgb(85, 170, 255);
+	background-color: rgb(43, 45, 56);
+}
+</string>
+       </property>
+       <property name="maxLength">
+        <number>200</number>
+       </property>
+       <property name="placeholderText">
+        <string>Nome completo</string>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="CadastrarInputButton">
+       <property name="geometry">
+        <rect>
+         <x>340</x>
+         <y>530</y>
+         <width>171</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">/*QPushButton{
+	border-radius: 10px;
+	background-color: rgba(60,60,60,255);
+}
+
+QPushButton:hover {
+	border-radius: 10px;
+	background-color: rgba(140,140,140,255);
+}
+
+QPushButton:pressed {
+	border-radius: 10px;
+	background-color: rgb(57, 57, 57);
+	
+}
+*/
+
+QPushButton{
+	font-family: Open Sans Light;
+	font-size:18px ;
+	color: #FFF;
+	border-radius: 10px;
+	background-color: rgba(13,117,190,255);
+}
+
+QPushButton:hover {
+	border-radius: 10px;
+	background-color: rgb(85,150,190);
+}
+
+QPushButton:pressed {
+	border-radius: 10px;
+	background-color: rgb(28,81,115);
+	
+}</string>
+       </property>
+       <property name="text">
+        <string>Cadastrar</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="GeneroComboBox">
+       <property name="geometry">
+        <rect>
+         <x>560</x>
+         <y>70</y>
+         <width>261</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>Masculino</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Feminino</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Outros</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="GeneroCadastroPage">
+       <property name="geometry">
+        <rect>
+         <x>560</x>
+         <y>20</y>
+         <width>289</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LayoutDirection::LeftToRight</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	font-family: Open Sans Light;
+	font-size: 20px;
+	color: #FFF;
+	
+}</string>
+       </property>
+       <property name="text">
+        <string>Gênero</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="SubequipeCadastroPage">
+       <property name="geometry">
+        <rect>
+         <x>560</x>
+         <y>130</y>
+         <width>289</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LayoutDirection::LeftToRight</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	font-family: Open Sans Light;
+	font-size: 20px;
+	color: #FFF;
+	
+}</string>
+       </property>
+       <property name="text">
+        <string>Sub-equipe</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>560</x>
+         <y>180</y>
+         <width>241</width>
+         <height>160</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QRadioButton" name="AdminCb">
+          <property name="text">
+           <string>Admin</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="PowertrainCb">
+          <property name="text">
+           <string>Powertrain</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="DinamicaCb">
+          <property name="text">
+           <string>Dinâmica veicular</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="DrivetrainCb">
+          <property name="text">
+           <string>Drivetrain</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="EletricaCb">
+          <property name="text">
+           <string>Elétrica</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QLabel" name="EmailCadastroPage">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>330</y>
+         <width>289</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LayoutDirection::LeftToRight</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	font-family: Open Sans Light;
+	font-size: 20px;
+	color: #FFF;
+	
+}</string>
+       </property>
+       <property name="text">
+        <string>Email</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="EmailEditLine">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>380</y>
+         <width>351</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Open Sans 61</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	font-family: Open Sans Light;
+	border: 2px solid rgb(37, 39, 48);
+	border-radius: 16px;
+	color: #FFF;
+	padding-left: 20px;
+	padding-right: 20px; 
+	background-color: rgb(34, 36, 44);
+}
+
+QLiteEdit:hover {
+	border: 2px solid rgb(48, 50, 62);
+}
+
+QLiteEdit:focus {
+	border: 2px solid rgb(85, 170, 255);
+	background-color: rgb(43, 45, 56);
+}
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="maxLength">
+        <number>200</number>
+       </property>
+       <property name="placeholderText">
+        <string>Email</string>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="TelefoneCadastroPage">
+       <property name="geometry">
+        <rect>
+         <x>550</x>
+         <y>360</y>
+         <width>289</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LayoutDirection::LeftToRight</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	font-family: Open Sans Light;
+	font-size: 20px;
+	color: #FFF;
+	
+}</string>
+       </property>
+       <property name="text">
+        <string>Telefone</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="telefoneEditLine">
+       <property name="geometry">
+        <rect>
+         <x>550</x>
+         <y>410</y>
+         <width>271</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Open Sans 61</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	font-family: Open Sans Light;
+	border: 2px solid rgb(37, 39, 48);
+	border-radius: 16px;
+	color: #FFF;
+	padding-left: 20px;
+	padding-right: 20px; 
+	background-color: rgb(34, 36, 44);
+}
+
+QLiteEdit:hover {
+	border: 2px solid rgb(48, 50, 62);
+}
+
+QLiteEdit:focus {
+	border: 2px solid rgb(85, 170, 255);
+	background-color: rgb(43, 45, 56);
+}
+</string>
+       </property>
+       <property name="inputMask">
+        <string>(99) 9 9999-9999</string>
+       </property>
+       <property name="text">
+        <string>()  -</string>
+       </property>
+       <property name="maxLength">
+        <number>16</number>
+       </property>
+       <property name="placeholderText">
+        <string>Telefone</string>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QDateEdit" name="aniversarioCadastro">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>280</y>
+         <width>171</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QDateEdit{
+	font-family: Open Sans Light;
+	border-radius: 10px;
+	color: #FFF;
+
+}</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="Projeto_Prog1.qrc"/>
+ </resources>
+ <connections/>
+</ui>

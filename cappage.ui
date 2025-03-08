@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CapPage</class>
+ <widget class="QDialog" name="CapPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1300</width>
+    <height>680</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1300</width>
+    <height>680</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1300</width>
+    <height>680</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Formula UFPB</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog{
+	background-color: rgba(45,45,45,255);
+}</string>
+  </property>
+  <widget class="QStackedWidget" name="Janelas">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>10</y>
+     <width>1071</width>
+     <height>651</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:none;</string>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="HomePageCp">
+    <widget class="QTableWidget" name="listarMembrosCP">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>70</y>
+       <width>1011</width>
+       <height>581</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTableWidget{
+	background-color: rgba(30,30,30,255);
+	border-radius: 10px;
+
+}</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="NomeBuscarCP">
+     <property name="geometry">
+      <rect>
+       <x>580</x>
+       <y>10</y>
+       <width>391</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Open Sans 61</family>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLineEdit{
+	font-family: Open Sans Light;
+	border: 2px solid rgb(37, 39, 48);
+	border-radius: 16px;
+	color: #FFF;
+	padding-left: 20px;
+	padding-right: 20px; 
+	background-color: rgb(34, 36, 44);
+}
+
+QLiteEdit:hover {
+	border: 2px solid rgb(48, 50, 62);
+}
+
+QLiteEdit:focus {
+	border: 2px solid rgb(85, 170, 255);
+	background-color: rgb(43, 45, 56);
+}
+</string>
+     </property>
+     <property name="maxLength">
+      <number>200</number>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+     <property name="placeholderText">
+      <string>Nome usuário</string>
+     </property>
+     <property name="clearButtonEnabled">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="BuscarButtonCP">
+     <property name="geometry">
+      <rect>
+       <x>980</x>
+       <y>10</y>
+       <width>61</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+	/*color: #FFF;*/
+	border-radius: 10px;
+	background-color: rgba(60,60,60,255);
+}
+
+QPushButton:hover {
+	border-radius: 10px;
+	background-color: rgba(78,78,79,255);
+}
+
+QPushButton:pressed {
+	border-radius: 10px;
+	background-color: rgba(45,45,45,255);
+	
+}
+
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="Projeto_Prog1.qrc">
+       <normaloff>:/debug/buscarWhite.png</normaloff>:/debug/buscarWhite.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="AtualizarButtonCP">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>10</y>
+       <width>61</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+	/*color: #FFF;*/
+	border-radius: 10px;
+	background-color: rgba(60,60,60,255);
+}
+
+QPushButton:hover {
+	border-radius: 10px;
+	background-color: rgba(78,78,79,255);
+}
+
+QPushButton:pressed {
+	border-radius: 10px;
+	background-color: rgba(45,45,45,255);
+	
+}
+
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="Projeto_Prog1.qrc">
+       <normaloff>:/debug/atualizarWhite.png</normaloff>:/debug/atualizarWhite.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="EditarButtonCP">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>10</y>
+       <width>101</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+	color: #FFF;
+	border-radius: 10px;
+	background-color: rgba(60,60,60,255);
+}
+
+QPushButton:hover {
+	border-radius: 10px;
+	background-color: rgba(78,78,79,255);
+}
+
+QPushButton:pressed {
+	border-radius: 10px;
+	background-color: rgba(45,45,45,255);
+	
+}
+
+</string>
+     </property>
+     <property name="text">
+      <string>Editar</string>
+     </property>
+     <property name="icon">
+      <iconset resource="Projeto_Prog1.qrc">
+       <normaloff>:/debug/editarWhite.png</normaloff>:/debug/editarWhite.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="DeletarButtonCP">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>10</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+	color: #FFF;
+	border-radius: 10px;
+	background-color: rgba(60,60,60,255);
+}
+
+QPushButton:hover {
+	border-radius: 10px;
+	background-color: rgba(78,78,79,255);
+}
+
+QPushButton:pressed {
+	border-radius: 10px;
+	background-color: rgba(45,45,45,255);
+	
+}
+
+</string>
+     </property>
+     <property name="text">
+      <string> Promove/ Rebaixar</string>
+     </property>
+     <property name="icon">
+      <iconset resource="Projeto_Prog1.qrc">
+       <normaloff>:/debug/promocaorebaixamentoWhite.png</normaloff>:/debug/promocaorebaixamentoWhite.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="RelatoriosPageCP"/>
+  </widget>
+  <widget class="QFrame" name="frameCapPage">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>191</width>
+     <height>651</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QFrame{
+	background-color: rgba(30,30,30,255);
+	border-radius: 20px;
+}
+
+QPushButton{
+	color: #FFF;
+	border-radius: 10px;
+	background-color: rgba(13,117,190,255);
+}
+
+QPushButton:hover {
+	border-radius: 10px;
+	background-color: rgb(85,150,190);
+}
+
+QPushButton:pressed {
+	border-radius: 10px;
+	background-color: rgb(28,81,115);
+	
+}
+</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Orientation::Vertical</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Policy::Preferred</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>10</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QPushButton" name="homeButtonCp">
+      <property name="text">
+       <string>Início</string>
+      </property>
+      <property name="icon">
+       <iconset resource="Projeto_Prog1.qrc">
+        <normaloff>:/debug/home.png</normaloff>:/debug/home.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>40</width>
+        <height>40</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Orientation::Vertical</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Policy::Preferred</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QPushButton" name="RelatorioButtonCP">
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	height: 34px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Relatórios</string>
+      </property>
+      <property name="icon">
+       <iconset resource="Projeto_Prog1.qrc">
+        <normaloff>:/debug/grafico.png</normaloff>:/debug/grafico.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>26</width>
+        <height>26</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <spacer name="verticalSpacer_4">
+      <property name="orientation">
+       <enum>Qt::Orientation::Vertical</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Policy::Preferred</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>10</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QPushButton" name="AtividadesButtonCP">
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	height: 34px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Atividades</string>
+      </property>
+      <property name="icon">
+       <iconset resource="Projeto_Prog1.qrc">
+        <normaloff>:/debug/atividades.png</normaloff>:/debug/atividades.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <spacer name="verticalSpacer_5">
+      <property name="orientation">
+       <enum>Qt::Orientation::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>315</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="Projeto_Prog1.qrc"/>
+ </resources>
+ <connections/>
+</ui>
