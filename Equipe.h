@@ -5,6 +5,8 @@
 #include <QTableWidget>
 #include <vector>
 
+class BancoDeDados;
+
 using String = QString;
 
 class DataNascimento{
@@ -26,8 +28,8 @@ public:
     int getDia(){return dia;}
     int getMes(){return mes;}
     int getAno(){return ano;}
-
 };
+
 
 class Membro{
 protected:
@@ -68,10 +70,12 @@ public:
 
 class Lider : public Membro{
 private:
+    Membro membro;
     int dataPromocao;
 public:
     /*METODOS CONSTRUTORES*/
     Lider(){};
+    Lider(Membro membro): membro(membro) {};
     Lider(String nome, String cpf, String subequipe, String genero, String dataNascimento, String email, String telefone, int dataPromocao);
 
     /*METODOS GET*/
@@ -81,11 +85,10 @@ public:
     void SetDataPromocao(int d);
 
     /*OUTROS METODOS*/
-    bool CadastrarMembro(Membro Membro);
+    bool CadastrarMembro(BancoDeDados* banco);
     bool EditarMembro(String id, Membro Membro);
-    bool DeletarMembro(String id);
+    bool DeletarMembro(String id, BancoDeDados* banco);
     void ListarMembros(QTableWidget *tabela, String subequipe);
-    void ListarMembrosCap(QTableWidget *tabela);
     void BuscarMembro(String nome, QTableWidget *tabela, String subequipe);
 
 };//FIM CLASSE LIDER
@@ -93,6 +96,7 @@ public:
 
 class Capitao : public Lider{
 public:
+
     /*OUTROS METODOS*/
     bool PromoverLider(String nome, String data, String id);
     bool RebaixarLider(String nome, String id);
@@ -109,43 +113,35 @@ private:
     String password;
 
 public:
-    /*CONSTRUTORES*/
+    //CONSTRUTORES
     BancoDeDados(){};
     BancoDeDados(String username, String password){
         this->username = username;
         this->password = password;
     };
-    BancoDeDados(String g, String nasc, String cpf, String n, String sub, String email, String tel, String username, String password){
-        membro.setNome(n);
-        membro.setCpf(cpf);
-        membro.setDataNasc(nasc);
-        membro.setSubequipe(sub);
-        //membro.setCargo();
-        membro.setEmail(email);
-        membro.setTelefone(tel);
-        membro.setGenero(g);
 
-        this->username = username;
-        this->password = password;
-    };
+    void setMembro(Membro m){membro = m;}
 
-
-    /*METODOS GET*/
+    //METODOS GET
     String getUsername(){return username;};
     String getPassword(){return password;};
+    Membro getMembro(){return membro;};
 
-    /*METODOS CRUD*/
+    //METODOS CRUD
     void ListarId(int id);
     void ListarNome(String nome);
+    bool deletar(String id, String tabela);
+    bool CadastrarMembro(Membro Membro);
 
-    /*OUTROS METODOS*/
+    //OUTROS METODOS
     bool VerificarAbertura();
-
+    bool Mover(String nome, String tabelaOrigem, String tabelaDestino, String data, String id);
     QStringList VerificarLogin();
     String RetornarIdTabela(String tabela);
+    void AbrirBanco();
+    void VerificarAbertura2();
+    bool GerarRelatorio();
 
-    bool Mover(String nome, String tabelaOrigem, String tabelaDestino, String data, String id);
-    bool deletar(String id, String tabela);
 
 };//FIM CLASSE BANCO DE DADOS
 

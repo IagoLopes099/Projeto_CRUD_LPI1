@@ -13,15 +13,9 @@ loginPage::loginPage(QWidget *parent)
 {
     ui->setupUi(this);
 
-    QString dir=qApp->applicationDirPath();
-    QString banco = dir + "/BdProg1/BdProg1";
+    BancoDeDados banco;
 
-    /*INICIO DA INICIALIZAÇÃO DO BANCO DE DADOS*/
-    qDebug() << "Drivers disponíveis:" << QSqlDatabase::drivers();
-
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(banco);
-
+    banco.AbrirBanco();
 
 }
 
@@ -47,8 +41,9 @@ void loginPage::on_LoginButton_clicked()
     QString username = ui->UsernameEditLine->text().toLower();
     QString password = ui->PasswordEditLine->text();
 
-    BancoDeDados bd(username, password);
-    QStringList resposta = bd.VerificarLogin();
+    BancoDeDados banco(username, password);
+
+    QStringList resposta = banco.VerificarLogin();
     /*
     qDebug() << resposta[0];
     qDebug() << resposta[1];*/
@@ -79,4 +74,3 @@ void loginPage::on_LoginButton_clicked()
 
     }
 }
-

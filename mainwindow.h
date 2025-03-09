@@ -39,5 +39,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     String subequipeLider;
+    BancoDeDados banco;
 };
 #endif // MAINWINDOW_H

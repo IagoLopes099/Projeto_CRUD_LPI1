@@ -9,13 +9,15 @@
 #include <QMessageBox>
 #include <QTableWidget>
 #include <QHeaderView>
+#include <QApplication>
+
 
 using namespace std;
 
 void Listar(int tamVetor, int *posVetor,int *largVetor, QTableWidget* tabela, String prepare, QStringList cabecalho){
 
-    BancoDeDados bd;
-    bd.VerificarAbertura();
+    BancoDeDados banco;
+    banco.VerificarAbertura();
 
     QSqlQuery query;
     query.prepare(prepare);
@@ -64,25 +66,13 @@ Membro::Membro(String nome, String cpf, String subequipe, String genero, String 
 
 
 /*----------------------------------------------INICIO DOS METODOS DA CLASSE LIDER--------------------------------------------------------*/
-bool Lider::CadastrarMembro(Membro Membro){
+bool Lider::CadastrarMembro(BancoDeDados* banco){
 
-
-    QSqlDatabase db = QSqlDatabase::database();
-
-    QSqlQuery query;
-    query.prepare("insert into tb_usuarios (nome,subequipe,cpf,genero,data_nascimento,email, telefone) values ('"+Membro.getNome().toLower()+"',\""+Membro.getSubequipe()+"\",\""+Membro.getCpf()+"\",\""+Membro.getGenero()+"\",\""+Membro.getDataNascimento()+"\",\""+Membro.getEmail()+"\",\""+Membro.getTelefone()+"\")");
-
-    if(!db.isOpen()){
-        qDebug() << "Banco de dados não esta aberto para cadastrar!";
+    if (!banco->VerificarAbertura()) {
+        qDebug() << "Banco de dados não está aberto na exclusão!";
         return false;
     }else{
-        if(query.exec()){
-
-            return true;
-        }else{
-
-            return false;
-        }
+        return banco->CadastrarMembro(membro);
     }
 }
 
@@ -125,26 +115,17 @@ bool Lider::EditarMembro(String id, Membro Membro){
     }
 }
 
-bool Lider::DeletarMembro(String id){
-    QSqlDatabase db = QSqlDatabase::database();
-    QSqlQuery query;
 
-    query.prepare("delete from tb_usuarios where id_usuarios="+id);
+bool Lider::DeletarMembro(String id, BancoDeDados* banco){
 
-    if (!db.isOpen()) {
+    if (!banco->VerificarAbertura()) {
         qDebug() << "Banco de dados não está aberto na exclusão!";
         return false;
     }else{
-        if(query.exec()){
-            return true;
-        }else{
-            qDebug() << "Erro ao executar query: " << query.lastError().text();
-            return false;
-        }
+        return banco->deletar(id, "tb_usuarios");
     }
 }
 
-/*--------------------------------------------------------INICIO DOS LISTAR--------------------------------------------------------*/
 
 void Lider::ListarMembros(QTableWidget *tabela, String subequipe_lider){
 
@@ -157,23 +138,6 @@ void Lider::ListarMembros(QTableWidget *tabela, String subequipe_lider){
     String prepare = "SELECT * FROM tb_usuarios WHERE subequipe='" + subequipe_lider + "' ORDER BY nome";
 
     Listar(tamVetor, posVetor, largVetor, tabela, prepare, cabecalho);
-
-}
-
-
-void Capitao::ListarMembrosCap(QTableWidget *tabela){
-
-    int tamVetor= 9;
-    int posVetor[] = {0,1,3,2,4,5,6,7,8};
-    int largVetor[] = {30,250,30,50,125, 100, 150, 140,140};
-
-    QStringList cabecalho = {"ID", "Nome", "Sexo","Cargo", "Sub-equipe", "Data de Nascimento", "CPF", "Email", "Telefone"};
-
-    String prepare = "SELECT id_usuarios as id,nome, cargo, genero,subequipe,data_nascimento,cpf, email,telefone "
-                     "FROM  tb_usuarios UNION ALL SELECT id_lideres as id,nome, cargo, genero,subequipe,data_nascimento,cpf, email,telefone"
-                     " from tb_lideres";
-
-    Listar(tamVetor,posVetor, largVetor, tabela, prepare, cabecalho);
 
 }
 
@@ -213,8 +177,6 @@ void Lider::BuscarMembro(String nome, QTableWidget *tabela, String subequipe){
     }
 }
 
-/*-------------------------------------------------------METODOS DA CLASSE LIDER-------------------------------------------------------*/
-
 
 Lider::Lider(String nome, String cpf, String subequipe, String genero, String dataNascimento, String email, String telefone, int dataPromocao) :
     Membro(nome,cpf,subequipe,genero,dataNascimento,email,telefone)
@@ -235,6 +197,7 @@ bool Capitao::PromoverLider(String nome, String data, String id){
 
     BancoDeDados banco;
 
+
     if(banco.Mover(nome, tabelaOrigem, tabelaDestino, data, id)){
         return true;
     }else{
@@ -249,11 +212,29 @@ bool Capitao::RebaixarLider(String nome, String id){
 
     BancoDeDados banco;
 
+
     if(banco.Mover(nome, tabelaOrigem, tabelaDestino, "", id)){
         return true;
     }else{
         return false;
     }
+
+}
+
+
+void Capitao::ListarMembrosCap(QTableWidget *tabela){
+
+    int tamVetor= 9;
+    int posVetor[] = {0,1,3,2,4,5,6,7,8};
+    int largVetor[] = {30,250,30,50,125, 100, 150, 140,140};
+
+    QStringList cabecalho = {"ID", "Nome", "Sexo","Cargo", "Sub-equipe", "Data de Nascimento", "CPF", "Email", "Telefone"};
+
+    String prepare = "SELECT id_usuarios as id,nome, cargo, genero,subequipe,data_nascimento,cpf, email,telefone "
+                     "FROM  tb_usuarios UNION ALL SELECT id_lideres as id,nome, cargo, genero,subequipe,data_nascimento,cpf, email,telefone"
+                     " from tb_lideres";
+
+    Listar(tamVetor,posVetor, largVetor, tabela, prepare, cabecalho);
 
 }
 
@@ -270,6 +251,41 @@ bool BancoDeDados::VerificarAbertura(){
     }else{
         return true;
     }
+}
+
+void BancoDeDados::VerificarAbertura2(){
+
+    QSqlDatabase db = QSqlDatabase::database();
+
+    if (!db.isOpen()) {
+        qDebug() << "Banco de dados não está aberto!";
+        AbrirBanco();
+    }else{
+        qDebug() << "Não foi possivel reabrir o banco!";
+    }
+}
+
+
+void BancoDeDados::AbrirBanco(){
+
+    QString dir=qApp->applicationDirPath();
+    QString banco = dir + "/BdProg1/BdProg1";
+
+    if (!QSqlDatabase::contains("qt_sql_default_connection")) {
+        QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "qt_sql_default_connection");
+        db.setDatabaseName(banco);
+
+        if (!db.open()) {
+            qDebug() << "Erro ao abrir o banco de dados:" << db.lastError().text();
+        } else {
+            //qDebug() << "Banco de dados aberto com sucesso!";
+        }
+    } else {
+        // Usa a conexão existente
+        QSqlDatabase db = QSqlDatabase::database("qt_sql_default_connection");
+        qDebug() << "Usando conexão existente com o banco de dados.";
+    }
+
 }
 
 
@@ -292,7 +308,7 @@ QStringList BancoDeDados::VerificarLogin(){
         if(query.exec(membro)){
             if(query.next()){
                 resposta << query.value(7).toString();
-                 resposta << query.value(6).toString();
+                resposta << query.value(6).toString();
             }
         }else{
             qDebug() << "Erro ao realizar consulta: " <<query.lastError().text();
@@ -410,7 +426,8 @@ bool BancoDeDados::Mover(String nome, String tabelaOrigem, String tabelaDestino,
 
 bool BancoDeDados::deletar(String id, String tabela){
     if(!VerificarAbertura()){
-        return false;
+        AbrirBanco();
+        //return false;
     }else{
 
         QSqlQuery query;
@@ -436,5 +453,23 @@ String BancoDeDados::RetornarIdTabela(String tabela){
         return "id_lideres";
     }else{
         return "id_capitaes";
+    }
+}
+
+bool BancoDeDados::CadastrarMembro(Membro Membro){
+
+    QSqlQuery query;
+    query.prepare("insert into tb_usuarios (nome,subequipe,cpf,genero,data_nascimento,email, telefone) values "
+                    "('"+Membro.getNome().toLower()+"',\""+Membro.getSubequipe()+"\",\""+Membro.getCpf()+"\",\""+Membro.getGenero()+"\",\""+Membro.getDataNascimento()+"\",\""+Membro.getEmail()+"\",\""+Membro.getTelefone()+"\")");
+
+    if(!VerificarAbertura()){
+        AbrirBanco();
+        return false;
+    }else{
+        if(query.exec()){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

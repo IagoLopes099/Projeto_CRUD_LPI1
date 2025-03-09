@@ -20,7 +20,7 @@ BuscarJanela::BuscarJanela(QWidget *parent, int id_Membro)
     QSqlQuery query;
     query.prepare("select * from tb_usuarios where id_usuarios =" + QString::number(id_Membro));
 
-    BancoDeDados bd;
+    //BancoDeDados* banco = BancoDeDados::getInstance();
 
     if(query.exec()){
 
@@ -127,10 +127,10 @@ void BuscarJanela::on_EditarButton_clicked()
 
 
 
-    Lider Membro(nome, CPF, subequipe, genero, aniversario, email, telefone,20);
+    Lider Lider(nome, CPF, subequipe, genero, aniversario, email, telefone,20);
 
 
-    if(!Membro.EditarMembro(QString::number(id), Membro)){
+    if(!Lider.EditarMembro(QString::number(id), Lider)){
         QMessageBox::warning(this,"Erro", "Algo inesperado ocorreu na edição!");
 
     }else{

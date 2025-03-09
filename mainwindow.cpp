@@ -10,16 +10,19 @@
 #include "Equipe.h"
 
 
-
 MainWindow::MainWindow(QWidget *parent, String subequipe_lider)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , subequipeLider(subequipe_lider)
+    , banco()
 {
     ui->setupUi(this);
-    //QString subequipe;
-    Lider Membro;
-    Membro.ListarMembros(ui->listarMembros, subequipeLider);
+
+    banco.AbrirBanco();
+
+    Lider Lider;
+    Lider.ListarMembros(ui->listarMembros, subequipeLider);
+
 }
 
 
@@ -102,11 +105,17 @@ void MainWindow::on_CadastrarInputButton_clicked()
 
 
 
-    Lider Membro(nome, CPF,resultadoCb, genero, aniversario, email, telefone,20);
-    if(Membro.CadastrarMembro(Membro)){
+    //Lider Lider(nome, CPF,resultadoCb, genero, aniversario, email, telefone,20);
+    Membro membro(nome, CPF,resultadoCb, genero, aniversario, email, telefone);
+    Lider lider(membro);
+
+    if(lider.CadastrarMembro(&banco)){
         QMessageBox::information(this,"Dados Digitados:","Usuário cadastrado com sucesso!");
         ui->NomeEditLine->clear();
         ui->CPFEditLine->clear();
+        ui->telefoneEditLine->clear();
+        ui->EmailEditLine->clear();
+        qDebug() << subequipeLider;
     }else{
         QMessageBox::critical(this, "Erro no cadastro","Membro não cadastrado!");
     }
@@ -115,14 +124,15 @@ void MainWindow::on_CadastrarInputButton_clicked()
 
 void MainWindow::on_DeletarButtonHP_clicked()
 {
-    Lider lider;
     int linha = ui->listarMembros->currentRow();
     if(linha < 0){
         return;
     }
     String id = ui->listarMembros->item(linha,0)->text();
 
-    if(lider.DeletarMembro(id)){
+    Lider lider;
+
+    if(lider.DeletarMembro(id, &banco)){
         QMessageBox::StandardButton resposta = QMessageBox::question(this, "","Tem certeza que deseja excluir?", QMessageBox::Yes|QMessageBox::Cancel);
         if(resposta == QMessageBox::Yes){
             QMessageBox::information(this, "","Usuário deletado");
