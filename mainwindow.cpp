@@ -20,8 +20,6 @@ MainWindow::MainWindow(QWidget *parent, String subequipe_lider)
     //QString subequipe;
     Lider Membro;
     Membro.ListarMembros(ui->listarMembros, subequipeLider);
-    qDebug() << subequipeLider;
-
 }
 
 
@@ -29,7 +27,6 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
 
 
 void MainWindow::on_CadastrarButton_clicked()
@@ -140,11 +137,8 @@ void MainWindow::on_DeletarButtonHP_clicked()
 
 void MainWindow::on_AtualizarButtonHP_clicked()
 {
-    //ui->listarMembros->setRowCount(0);
     Lider Membro;
     Membro.ListarMembros(ui->listarMembros, subequipeLider);
-    qDebug() << subequipeLider;
-
 }
 
 

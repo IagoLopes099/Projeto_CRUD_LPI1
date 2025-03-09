@@ -1,6 +1,7 @@
 #include "editarJanela.h"
 #include "ui_editarJanela.h"
 #include <QSqlQuery>
+#include <QSqlError>
 #include <QMessageBox>
 #include "mainwindow.h"
 
@@ -13,51 +14,56 @@ BuscarJanela::BuscarJanela(QWidget *parent, int id_Membro)
     , ui(new Ui::BuscarJanela)
 {
     ui->setupUi(this);
+
     id = id_Membro;
 
     QSqlQuery query;
-    query.prepare("select * from tb_usuarios where id_usuarios = " + QString::number(id_Membro));
-    if(query.exec()){
-        query.first();
-        QString nome = query.value(1).toString();
+    query.prepare("select * from tb_usuarios where id_usuarios =" + QString::number(id_Membro));
 
-        if(nome == "M"){
+    BancoDeDados bd;
+
+    if(query.exec()){
+
+        query.first();
+        QString genero = query.value(4).toString();
+
+        if(genero == "M"){
             ui->generoEditando->setCurrentIndex(0);
-        }else if(nome == "F"){
+        }else if(genero == "F"){
             ui->generoEditando->setCurrentIndex(1);
         }else{
             ui->generoEditando->setCurrentIndex(2);
         }
 
-        ui->NomeEditando->setText(query.value(4).toString());
-        ui->cpfEditando->setText(query.value(3).toString());
-        ui->EmailEdit->setText(query.value(6).toString());
-        ui->telefoneEdit->setText(query.value(7).toString());
-        ui->dataEditando->setText(query.value(2).toString());
+        ui->NomeEditando->setText(query.value(1).toString());
+        ui->cpfEditando->setText(query.value(10).toString());
+        ui->EmailEdit->setText(query.value(9).toString());
+        ui->telefoneEdit->setText(query.value(8).toString());
+        ui->dataEditando->setText(query.value(5).toString());
 
-        if(query.value(5).toString() == "admin"){
+        if(query.value(6).toString() == "admin"){
             ui->AdminCbEdit->setAutoExclusive(false);
             ui->AdminCbEdit->setChecked(true);
             ui->AdminCbEdit->setAutoExclusive(true);
 
-        }else if(query.value(5).toString() == "powertrain"){
+        }else if(query.value(6).toString() == "powertrain"){
             ui->PowertrainCbEdit->setAutoExclusive(false);
             ui->PowertrainCbEdit->setChecked(true);
             ui->PowertrainCbEdit->setAutoExclusive(true);
 
-        }else if(query.value(5).toString() == "dinamica veicular"){
+        }else if(query.value(6).toString() == "dinamica veicular"){
 
             ui->DinamicaCbEdit->setAutoExclusive(false);
             ui->DinamicaCbEdit->setChecked(true);
             ui->DinamicaCbEdit->setAutoExclusive(true);
 
-        }else if(query.value(5).toString() == "drivetrain"){
+        }else if(query.value(6).toString() == "drivetrain"){
 
             ui->DrivetrainCbEdit->setAutoExclusive(false);
             ui->DrivetrainCbEdit->setChecked(true);
             ui->DrivetrainCbEdit->setAutoExclusive(true);
 
-        }else if(query.value(5).toString() == "elétrica"){
+        }else if(query.value(6).toString() == "elétrica"){
 
             ui->EletricaCbEdit->setAutoExclusive(false);
             ui->EletricaCbEdit->setChecked(true);
@@ -68,7 +74,9 @@ BuscarJanela::BuscarJanela(QWidget *parent, int id_Membro)
 
 
     }else{
+        qDebug() << "erro3"<< query.lastError().text();
         QMessageBox::warning(this, "Erro","Algo inesperado aconteceu!");
+
     }
 
 
@@ -120,7 +128,6 @@ void BuscarJanela::on_EditarButton_clicked()
 
 
     Lider Membro(nome, CPF, subequipe, genero, aniversario, email, telefone,20);
-
 
 
     if(!Membro.EditarMembro(QString::number(id), Membro)){

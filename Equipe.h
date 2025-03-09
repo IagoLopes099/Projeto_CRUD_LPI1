@@ -7,6 +7,28 @@
 
 using String = QString;
 
+class DataNascimento{
+private:
+    int dia;
+    int mes;
+    int ano;
+public:
+    DataNascimento(int d, int m, int a){
+        this->dia = d;
+        this->mes = m;
+        this->ano = a;
+    };
+
+    void setDia(int d){dia = d;}
+    void setMes(int m){mes = m;}
+    void setAno(int a){ano = a;}
+
+    int getDia(){return dia;}
+    int getMes(){return mes;}
+    int getAno(){return ano;}
+
+};
+
 class Membro{
 protected:
     String nome;
@@ -74,6 +96,7 @@ public:
     /*OUTROS METODOS*/
     bool PromoverLider(String nome, String data, String id);
     bool RebaixarLider(String nome, String id);
+    void ListarMembrosCap(QTableWidget *tabela);
 
 };//FIM CLASSE CAPITÃO
 
@@ -81,6 +104,7 @@ public:
 class BancoDeDados{
 private:
     Membro membro;
+    std::vector<Membro> membros;
     String username;
     String password;
 
@@ -105,21 +129,23 @@ public:
         this->password = password;
     };
 
+
     /*METODOS GET*/
     String getUsername(){return username;};
     String getPassword(){return password;};
 
-    /*OUTROS METODOS*/
+    /*METODOS CRUD*/
     void ListarId(int id);
     void ListarNome(String nome);
+
+    /*OUTROS METODOS*/
     bool VerificarAbertura();
+
     QStringList VerificarLogin();
     String RetornarIdTabela(String tabela);
 
     bool Mover(String nome, String tabelaOrigem, String tabelaDestino, String data, String id);
     bool deletar(String id, String tabela);
-    void ListarMembros();
-    void ListarMembrosSubequipe();
 
 };//FIM CLASSE BANCO DE DADOS
 

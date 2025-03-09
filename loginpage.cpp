@@ -49,8 +49,9 @@ void loginPage::on_LoginButton_clicked()
 
     BancoDeDados bd(username, password);
     QStringList resposta = bd.VerificarLogin();
+    /*
     qDebug() << resposta[0];
-    qDebug() << resposta[1];
+    qDebug() << resposta[1];*/
 
     if(resposta[0] == "lider"){
         this->close();

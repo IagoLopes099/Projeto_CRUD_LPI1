@@ -48,6 +48,7 @@ void Listar(int tamVetor, int *posVetor,int *largVetor, QTableWidget* tabela, St
 }//FIM DA FUNÇÃO LISTAR
 
 
+/*----------------------------------------------INICIO DOS METODOS DA CLASSE MEMBRO--------------------------------------------------------*/
 Membro::Membro(){}
 
 Membro::Membro(String nome, String cpf, String subequipe, String genero, String dataNascimento, String email, String telefone)
@@ -62,7 +63,9 @@ Membro::Membro(String nome, String cpf, String subequipe, String genero, String 
 }
 
 
+/*----------------------------------------------INICIO DOS METODOS DA CLASSE LIDER--------------------------------------------------------*/
 bool Lider::CadastrarMembro(Membro Membro){
+
 
     QSqlDatabase db = QSqlDatabase::database();
 
@@ -158,7 +161,7 @@ void Lider::ListarMembros(QTableWidget *tabela, String subequipe_lider){
 }
 
 
-void Lider::ListarMembrosCap(QTableWidget *tabela){
+void Capitao::ListarMembrosCap(QTableWidget *tabela){
 
     int tamVetor= 9;
     int posVetor[] = {0,1,3,2,4,5,6,7,8};
@@ -425,15 +428,6 @@ bool BancoDeDados::deletar(String id, String tabela){
     }
 }
 
-void BancoDeDados::ListarMembros(){
-
-
-}
-
-void BancoDeDados::ListarMembrosSubequipe(){
-
-
-}
 
 String BancoDeDados::RetornarIdTabela(String tabela){
     if(tabela == "tb_usuarios"){
