@@ -51,13 +51,14 @@ void loginPage::on_LoginButton_clicked()
     QStringList resposta = bd.VerificarLogin();
     qDebug() << resposta[0];
     qDebug() << resposta[1];
+
     if(resposta[0] == "lider"){
         this->close();
         MainWindow *main = new MainWindow(nullptr,resposta[1]);
         main->show();
 
 
-    }else if(resposta[0] == "capitao"){
+    }else if(resposta[0] == "capitão"){
         this->close();
         CapPage paginaCapitao;
         paginaCapitao.setModal(true);

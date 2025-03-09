@@ -32,6 +32,11 @@ CapPage::~CapPage()
 
 void CapPage::on_BuscarButtonCP_clicked()
 {
+    QString nome = ui->NomeBuscarCP->text().toLower();
+
+    Capitao cap;
+
+    cap.BuscarMembro(nome, ui->listarMembrosCP, "");
 
 }
 

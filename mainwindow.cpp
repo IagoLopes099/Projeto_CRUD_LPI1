@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent, String subequipe_lider)
     , subequipeLider(subequipe_lider)
 {
     ui->setupUi(this);
-
+    //QString subequipe;
     Lider Membro;
     Membro.ListarMembros(ui->listarMembros, subequipeLider);
     qDebug() << subequipeLider;
@@ -155,9 +155,12 @@ void MainWindow::on_BuscarButtonHP_clicked()
     nome = nome.toLower();
 
     Lider Membro;
+
+    Membro.BuscarMembro(nome,ui->listarMembros, subequipeLider);
+    /*
     if(!Membro.BuscarMembro(nome,ui->listarMembros)){
         QMessageBox::warning(this,"Erro", "Algo inesperado ocorreu!");
-    }
+    }*/
 }
 
 

@@ -1,5 +1,5 @@
 #include "Equipe.h"
-//#include <iostream>
+#include <iostream>
 #include <QDebug>
 #include <QString>
 #include <QSqlQuery>
@@ -9,6 +9,43 @@
 #include <QMessageBox>
 #include <QTableWidget>
 #include <QHeaderView>
+
+using namespace std;
+
+void Listar(int tamVetor, int *posVetor,int *largVetor, QTableWidget* tabela, String prepare, QStringList cabecalho){
+
+    BancoDeDados bd;
+    bd.VerificarAbertura();
+
+    QSqlQuery query;
+    query.prepare(prepare);
+
+    if (query.exec()) {
+        int linha = 0;
+        tabela->setRowCount(0);
+        tabela->setColumnCount(tamVetor);
+
+        while (query.next()) {
+            tabela->insertRow(linha);
+
+            for(int i = 0; i < tamVetor ; i++){
+                tabela->setItem(linha, i, new QTableWidgetItem(query.value(posVetor[i]).toString()));
+            }
+            linha++;
+        }
+
+        for(int i = 0; i< tamVetor ; i++){
+            tabela->setColumnWidth(i, largVetor[i]);
+        }
+
+        tabela->setHorizontalHeaderLabels(cabecalho);
+        tabela->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        tabela->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tabela->verticalHeader()->setVisible(false);
+    } else {
+        qDebug() << "Erro ao executar consulta: " << query.lastError().text();
+    }
+}//FIM DA FUNÇÃO LISTAR
 
 
 Membro::Membro(){}
@@ -108,158 +145,72 @@ bool Lider::DeletarMembro(String id){
 
 void Lider::ListarMembros(QTableWidget *tabela, String subequipe_lider){
 
-    BancoDeDados bd;
-    bd.VerificarAbertura();
+    int tamVetor = 8;
+    int posVetor[] = {0, 1, 4, 6, 5, 10, 9, 8};
+    int largVetor[] = {30, 250, 30, 75, 125, 100, 150, 140};
 
-    QSqlQuery query;
-    query.prepare("SELECT * FROM tb_usuarios WHERE subequipe='"+subequipe_lider+"' ORDER BY nome");
+    QStringList cabecalho = {"ID", "Nome", "Sexo", "Sub-equipe", "Data de Nascimento", "CPF", "Email", "Telefone"};
 
-    if (query.exec()) {
-        int linha = 0;
-        tabela->setRowCount(0);
-        tabela->setColumnCount(8);
+    String prepare = "SELECT * FROM tb_usuarios WHERE subequipe='" + subequipe_lider + "' ORDER BY nome";
 
-        while (query.next()) {
-            tabela->insertRow(linha);
-            tabela->setItem(linha, 0, new QTableWidgetItem(query.value(0).toString()));
-            tabela->setItem(linha, 1, new QTableWidgetItem(query.value(1).toString()));
-            tabela->setItem(linha, 2, new QTableWidgetItem(query.value(4).toString()));
-            tabela->setItem(linha, 3, new QTableWidgetItem(query.value(6).toString()));
-            tabela->setItem(linha, 4, new QTableWidgetItem(query.value(5).toString()));
-            tabela->setItem(linha, 5, new QTableWidgetItem(query.value(10).toString()));
-            tabela->setItem(linha, 6, new QTableWidgetItem(query.value(9).toString()));
-            tabela->setItem(linha, 7, new QTableWidgetItem(query.value(8).toString()));
-            linha++;
-        }
+    Listar(tamVetor, posVetor, largVetor, tabela, prepare, cabecalho);
 
-        tabela->setColumnWidth(0, 30);
-        tabela->setColumnWidth(1, 250);
-        tabela->setColumnWidth(2, 30);
-        tabela->setColumnWidth(3, 75);
-        tabela->setColumnWidth(4, 125);
-        tabela->setColumnWidth(5, 100);
-        tabela->setColumnWidth(6, 150);
-        tabela->setColumnWidth(7, 140);
-
-        QStringList cabecalho = {"ID", "Nome", "Sexo", "Sub-equipe", "Data de Nascimento", "CPF", "Email", "Telefone"};
-        tabela->setHorizontalHeaderLabels(cabecalho);
-
-        tabela->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        tabela->setSelectionBehavior(QAbstractItemView::SelectRows);
-
-        tabela->verticalHeader()->setVisible(false);
-    } else {
-        qDebug() << "Erro ao executar consulta: " << query.lastError().text();
-    }
 }
+
 
 void Lider::ListarMembrosCap(QTableWidget *tabela){
 
-    QSqlDatabase db = QSqlDatabase::database();
-    if (!db.isOpen()) {
-        qDebug() << "Banco de dados não está aberto para listar!";
-        return;
-    }
+    int tamVetor= 9;
+    int posVetor[] = {0,1,3,2,4,5,6,7,8};
+    int largVetor[] = {30,250,30,50,125, 100, 150, 140,140};
 
-    QSqlQuery query;
-    query.prepare("SELECT id_usuarios as id,nome, cargo, genero,subequipe,data_nascimento,cpf, email,telefone FROM  tb_usuarios UNION ALL SELECT id_lideres as id,nome, cargo, genero,subequipe,data_nascimento,cpf, email,telefone from tb_lideres");
+    QStringList cabecalho = {"ID", "Nome", "Sexo","Cargo", "Sub-equipe", "Data de Nascimento", "CPF", "Email", "Telefone"};
 
-    if (query.exec()) {
-        int linha = 0;
-        tabela->setRowCount(0);
-        tabela->setColumnCount(9);
+    String prepare = "SELECT id_usuarios as id,nome, cargo, genero,subequipe,data_nascimento,cpf, email,telefone "
+                     "FROM  tb_usuarios UNION ALL SELECT id_lideres as id,nome, cargo, genero,subequipe,data_nascimento,cpf, email,telefone"
+                     " from tb_lideres";
 
-        while (query.next()) {
-            tabela->insertRow(linha);
-            tabela->setItem(linha, 0, new QTableWidgetItem(query.value(0).toString()));
-            tabela->setItem(linha, 1, new QTableWidgetItem(query.value(1).toString()));
-            tabela->setItem(linha, 2, new QTableWidgetItem(query.value(3).toString()));
-            tabela->setItem(linha, 3, new QTableWidgetItem(query.value(2).toString()));
-            tabela->setItem(linha, 4, new QTableWidgetItem(query.value(4).toString()));
-            tabela->setItem(linha, 5, new QTableWidgetItem(query.value(5).toString()));
-            tabela->setItem(linha, 6, new QTableWidgetItem(query.value(6).toString()));
-            tabela->setItem(linha, 7, new QTableWidgetItem(query.value(7).toString()));
-            tabela->setItem(linha, 8, new QTableWidgetItem(query.value(8).toString()));
-            linha++;
-        }
+    Listar(tamVetor,posVetor, largVetor, tabela, prepare, cabecalho);
 
-        tabela->setColumnWidth(0, 30);
-        tabela->setColumnWidth(1, 250);
-        tabela->setColumnWidth(2, 30);
-        tabela->setColumnWidth(3, 50);
-        tabela->setColumnWidth(4, 125);
-        tabela->setColumnWidth(5, 100);
-        tabela->setColumnWidth(6, 150);
-        tabela->setColumnWidth(7, 140);
-        tabela->setColumnWidth(8, 140);
+}
+
+
+void Lider::BuscarMembro(String nome, QTableWidget *tabela, String subequipe){
+
+    String prepare;
+
+    if(subequipe == ""){ // AQUI É CAPITÃO GERAL
+
+        prepare = "SELECT id_usuarios as id, nome, cargo, genero, subequipe, data_nascimento, cpf, email, telefone "
+                  "FROM tb_usuarios WHERE nome LIKE '%" + nome + "%' "
+                           "UNION ALL "
+                           "SELECT id_lideres as id, nome, cargo, genero, subequipe, data_nascimento, cpf, email, telefone "
+                           "FROM tb_lideres "
+                           "WHERE nome LIKE '%" + nome + "%'";
+
+        int tamVetor = 9;
+        int posVetor[] = {0,1,3,2,4,5,6,7,8};
+        int largVetor[] = {30,250,30,50,125, 100, 150, 140,140};
 
         QStringList cabecalho = {"ID", "Nome", "Sexo","Cargo", "Sub-equipe", "Data de Nascimento", "CPF", "Email", "Telefone"};
-        tabela->setHorizontalHeaderLabels(cabecalho);
 
-        tabela->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        tabela->setSelectionBehavior(QAbstractItemView::SelectRows);
+        Listar(tamVetor, posVetor, largVetor, tabela, prepare, cabecalho);
 
-        tabela->verticalHeader()->setVisible(false);
-    } else {
-        qDebug() << "Erro ao executar consulta: " << query.lastError().text();
-    }
-}
+    }else{ // AQUI É LIDER
 
-
-
-bool Lider::BuscarMembro(String nome, QTableWidget *tabela){
-
-    QSqlDatabase db = QSqlDatabase::database();
-    if (!db.isOpen()) {
-        qDebug() << "Banco de dados não está aberto para buscar!";
-        return false;
-    }
-
-    QSqlQuery query;
-    query.prepare("SELECT * FROM tb_usuarios where nome LIKE \"%"+nome+ "%\"");
-
-    if (query.exec()) {
-        int linha = 0;
-        tabela->setRowCount(0);
-        tabela->setColumnCount(9);
-
-        while (query.next()) {
-            tabela->insertRow(linha);
-            tabela->setItem(linha, 0, new QTableWidgetItem(query.value(0).toString()));
-            tabela->setItem(linha, 1, new QTableWidgetItem(query.value(1).toString()));
-            tabela->setItem(linha, 2, new QTableWidgetItem(query.value(4).toString()));
-            tabela->setItem(linha, 3, new QTableWidgetItem(query.value(6).toString()));
-            tabela->setItem(linha, 4, new QTableWidgetItem(query.value(5).toString()));
-            tabela->setItem(linha, 5, new QTableWidgetItem(query.value(10).toString()));
-            tabela->setItem(linha, 6, new QTableWidgetItem(query.value(9).toString()));
-            tabela->setItem(linha, 7, new QTableWidgetItem(query.value(8).toString()));
-            tabela->setItem(linha, 8, new QTableWidgetItem(query.value(7).toString()));
-            linha++;
-        }
-
-        tabela->setColumnWidth(0, 30);
-        tabela->setColumnWidth(1, 250);
-        tabela->setColumnWidth(2, 30);
-        tabela->setColumnWidth(3, 75);
-        tabela->setColumnWidth(4, 125);
-        tabela->setColumnWidth(5, 100);
-        tabela->setColumnWidth(6, 150);
-        tabela->setColumnWidth(7, 140);
-        tabela->setColumnWidth(8, 140);
+        int tamVetor = 8;
+        int posVetor[] = {0, 1, 4, 6, 5, 10, 9, 8};
+        int largVetor[] = {30, 250, 30, 75, 125, 100, 150, 140};
 
         QStringList cabecalho = {"ID", "Nome", "Sexo", "Sub-equipe", "Data de Nascimento", "CPF", "Email", "Telefone"};
-        tabela->setHorizontalHeaderLabels(cabecalho);
-        tabela->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        tabela->setSelectionBehavior(QAbstractItemView::SelectRows);
-        tabela->verticalHeader()->setVisible(false);
-        return true;
-    } else {
-        qDebug() << "Erro ao executar consulta: " << query.lastError().text();
-        return false;
+
+        prepare = "SELECT * FROM tb_usuarios where nome LIKE \"%"+nome+ "%\" and subequipe='"+subequipe+ "'";
+
+        Listar(tamVetor, posVetor, largVetor, tabela, prepare, cabecalho);
     }
 }
 
-/*--------------------------------------------------------FIM DOS LISTAR--------------------------------------------------------*/
+/*-------------------------------------------------------METODOS DA CLASSE LIDER-------------------------------------------------------*/
 
 
 Lider::Lider(String nome, String cpf, String subequipe, String genero, String dataNascimento, String email, String telefone, int dataPromocao) :
@@ -272,6 +223,8 @@ Lider::Lider(String nome, String cpf, String subequipe, String genero, String da
 void Lider::SetDataPromocao(int n){
     this->dataPromocao = n;
 }
+
+/*-------------------------------------------------------METODOS DA CLASSE CAPITAO-------------------------------------------------------*/
 
 bool Capitao::PromoverLider(String nome, String data, String id){
     String tabelaDestino = "tb_lideres";
@@ -299,9 +252,10 @@ bool Capitao::RebaixarLider(String nome, String id){
         return false;
     }
 
-
-
 }
+
+
+/*-------------------------------------------------------METODOS DA CLASSE BANCO-------------------------------------------------------*/
 
 bool BancoDeDados::VerificarAbertura(){
 
@@ -327,7 +281,6 @@ QStringList BancoDeDados::VerificarLogin(){
 
         QSqlQuery query;
 
-
         String membro = "SELECT * FROM tb_usuarios where username = '"+username+ "' and password='" +password+ "'";
         String lider = "SELECT * FROM tb_lideres where username = '"+username+ "' and password='" +password+ "'";
         String capitao = "SELECT * FROM tb_capitaes where username = '"+username+ "' and password='" +password+ "'";
@@ -336,7 +289,7 @@ QStringList BancoDeDados::VerificarLogin(){
         if(query.exec(membro)){
             if(query.next()){
                 resposta << query.value(7).toString();
-                resposta << query.value(6).toString();
+                 resposta << query.value(6).toString();
             }
         }else{
             qDebug() << "Erro ao realizar consulta: " <<query.lastError().text();
@@ -472,7 +425,12 @@ bool BancoDeDados::deletar(String id, String tabela){
     }
 }
 
-void BancoDeDados::ListarUsuarios(){
+void BancoDeDados::ListarMembros(){
+
+
+}
+
+void BancoDeDados::ListarMembrosSubequipe(){
 
 
 }
