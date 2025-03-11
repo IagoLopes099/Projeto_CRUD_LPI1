@@ -58,7 +58,7 @@ public:
     QLineEdit *CPFEditLine;
     QLabel *NascimentoCadastroPage;
     QLabel *CPFCadastroPage;
-    QLineEdit *NomeEditLine;
+    QLineEdit *NomeEditLineCadastro;
     QPushButton *CadastrarInputButton;
     QComboBox *GeneroComboBox;
     QLabel *GeneroCadastroPage;
@@ -75,6 +75,10 @@ public:
     QLabel *TelefoneCadastroPage;
     QLineEdit *telefoneEditLine;
     QDateEdit *aniversarioCadastro;
+    QLineEdit *UsuarioEditLineCadastro;
+    QLineEdit *SenhaEditLineCadastro;
+    QLabel *UsuarioCadastroPage;
+    QLabel *SenhaCadastroPage;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -336,7 +340,7 @@ public:
         CadastroPage->setObjectName("CadastroPage");
         frame_2 = new QFrame(CadastroPage);
         frame_2->setObjectName("frame_2");
-        frame_2->setGeometry(QRect(40, 20, 891, 611));
+        frame_2->setGeometry(QRect(40, 0, 891, 651));
         frame_2->setStyleSheet(QString::fromUtf8("QFrame{\n"
 "	background-color: rgba(30,30,30,255);\n"
 "	border-radius: 20px;\n"
@@ -387,11 +391,11 @@ public:
 "	color: #FFF;\n"
 "	\n"
 "}"));
-        NomeEditLine = new QLineEdit(frame_2);
-        NomeEditLine->setObjectName("NomeEditLine");
-        NomeEditLine->setGeometry(QRect(50, 70, 351, 41));
-        NomeEditLine->setFont(font);
-        NomeEditLine->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+        NomeEditLineCadastro = new QLineEdit(frame_2);
+        NomeEditLineCadastro->setObjectName("NomeEditLineCadastro");
+        NomeEditLineCadastro->setGeometry(QRect(50, 70, 351, 41));
+        NomeEditLineCadastro->setFont(font);
+        NomeEditLineCadastro->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
 "	font-family: Open Sans Light;\n"
 "	border: 2px solid rgb(37, 39, 48);\n"
 "	border-radius: 16px;\n"
@@ -410,11 +414,11 @@ public:
 "	background-color: rgb(43, 45, 56);\n"
 "}\n"
 ""));
-        NomeEditLine->setMaxLength(200);
-        NomeEditLine->setClearButtonEnabled(false);
+        NomeEditLineCadastro->setMaxLength(200);
+        NomeEditLineCadastro->setClearButtonEnabled(false);
         CadastrarInputButton = new QPushButton(frame_2);
         CadastrarInputButton->setObjectName("CadastrarInputButton");
-        CadastrarInputButton->setGeometry(QRect(340, 530, 171, 51));
+        CadastrarInputButton->setGeometry(QRect(340, 580, 171, 51));
         CadastrarInputButton->setStyleSheet(QString::fromUtf8("/*QPushButton{\n"
 "	border-radius: 10px;\n"
 "	background-color: rgba(60,60,60,255);\n"
@@ -469,7 +473,7 @@ public:
         GeneroCadastroPage->setAlignment(Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter);
         SubequipeCadastroPage = new QLabel(frame_2);
         SubequipeCadastroPage->setObjectName("SubequipeCadastroPage");
-        SubequipeCadastroPage->setGeometry(QRect(560, 130, 289, 40));
+        SubequipeCadastroPage->setGeometry(QRect(560, 120, 289, 40));
         SubequipeCadastroPage->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         SubequipeCadastroPage->setStyleSheet(QString::fromUtf8("QLabel{\n"
 "	font-family: Open Sans Light;\n"
@@ -480,7 +484,7 @@ public:
         SubequipeCadastroPage->setAlignment(Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter);
         layoutWidget = new QWidget(frame_2);
         layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(560, 180, 241, 160));
+        layoutWidget->setGeometry(QRect(560, 170, 241, 160));
         verticalLayout_3 = new QVBoxLayout(layoutWidget);
         verticalLayout_3->setObjectName("verticalLayout_3");
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
@@ -547,7 +551,7 @@ public:
         EmailEditLine->setClearButtonEnabled(false);
         TelefoneCadastroPage = new QLabel(frame_2);
         TelefoneCadastroPage->setObjectName("TelefoneCadastroPage");
-        TelefoneCadastroPage->setGeometry(QRect(550, 360, 289, 40));
+        TelefoneCadastroPage->setGeometry(QRect(50, 440, 289, 40));
         TelefoneCadastroPage->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         TelefoneCadastroPage->setStyleSheet(QString::fromUtf8("QLabel{\n"
 "	font-family: Open Sans Light;\n"
@@ -558,7 +562,7 @@ public:
         TelefoneCadastroPage->setAlignment(Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter);
         telefoneEditLine = new QLineEdit(frame_2);
         telefoneEditLine->setObjectName("telefoneEditLine");
-        telefoneEditLine->setGeometry(QRect(550, 410, 271, 41));
+        telefoneEditLine->setGeometry(QRect(50, 490, 271, 41));
         telefoneEditLine->setFont(font);
         telefoneEditLine->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
 "	font-family: Open Sans Light;\n"
@@ -590,6 +594,78 @@ public:
 "	color: #FFF;\n"
 "\n"
 "}"));
+        UsuarioEditLineCadastro = new QLineEdit(frame_2);
+        UsuarioEditLineCadastro->setObjectName("UsuarioEditLineCadastro");
+        UsuarioEditLineCadastro->setGeometry(QRect(560, 390, 281, 41));
+        UsuarioEditLineCadastro->setFont(font);
+        UsuarioEditLineCadastro->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+"	font-family: Open Sans Light;\n"
+"	border: 2px solid rgb(37, 39, 48);\n"
+"	border-radius: 16px;\n"
+"	color: #FFF;\n"
+"	padding-left: 20px;\n"
+"	padding-right: 20px; \n"
+"	background-color: rgb(34, 36, 44);\n"
+"}\n"
+"\n"
+"QLiteEdit:hover {\n"
+"	border: 2px solid rgb(48, 50, 62);\n"
+"}\n"
+"\n"
+"QLiteEdit:focus {\n"
+"	border: 2px solid rgb(85, 170, 255);\n"
+"	background-color: rgb(43, 45, 56);\n"
+"}\n"
+""));
+        UsuarioEditLineCadastro->setMaxLength(200);
+        UsuarioEditLineCadastro->setClearButtonEnabled(false);
+        SenhaEditLineCadastro = new QLineEdit(frame_2);
+        SenhaEditLineCadastro->setObjectName("SenhaEditLineCadastro");
+        SenhaEditLineCadastro->setGeometry(QRect(560, 490, 281, 41));
+        SenhaEditLineCadastro->setFont(font);
+        SenhaEditLineCadastro->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+"	font-family: Open Sans Light;\n"
+"	border: 2px solid rgb(37, 39, 48);\n"
+"	border-radius: 16px;\n"
+"	color: #FFF;\n"
+"	padding-left: 20px;\n"
+"	padding-right: 20px; \n"
+"	background-color: rgb(34, 36, 44);\n"
+"}\n"
+"\n"
+"QLiteEdit:hover {\n"
+"	border: 2px solid rgb(48, 50, 62);\n"
+"}\n"
+"\n"
+"QLiteEdit:focus {\n"
+"	border: 2px solid rgb(85, 170, 255);\n"
+"	background-color: rgb(43, 45, 56);\n"
+"}\n"
+""));
+        SenhaEditLineCadastro->setMaxLength(200);
+        SenhaEditLineCadastro->setClearButtonEnabled(false);
+        UsuarioCadastroPage = new QLabel(frame_2);
+        UsuarioCadastroPage->setObjectName("UsuarioCadastroPage");
+        UsuarioCadastroPage->setGeometry(QRect(560, 340, 289, 40));
+        UsuarioCadastroPage->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
+        UsuarioCadastroPage->setStyleSheet(QString::fromUtf8("QLabel{\n"
+"	font-family: Open Sans Light;\n"
+"	font-size: 20px;\n"
+"	color: #FFF;\n"
+"	\n"
+"}"));
+        UsuarioCadastroPage->setAlignment(Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter);
+        SenhaCadastroPage = new QLabel(frame_2);
+        SenhaCadastroPage->setObjectName("SenhaCadastroPage");
+        SenhaCadastroPage->setGeometry(QRect(560, 440, 289, 40));
+        SenhaCadastroPage->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
+        SenhaCadastroPage->setStyleSheet(QString::fromUtf8("QLabel{\n"
+"	font-family: Open Sans Light;\n"
+"	font-size: 20px;\n"
+"	color: #FFF;\n"
+"	\n"
+"}"));
+        SenhaCadastroPage->setAlignment(Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter);
         Janelas->addWidget(CadastroPage);
         MainWindow->setCentralWidget(centralwidget);
 
@@ -618,7 +694,7 @@ public:
         CPFEditLine->setPlaceholderText(QCoreApplication::translate("MainWindow", "CPF", nullptr));
         NascimentoCadastroPage->setText(QCoreApplication::translate("MainWindow", "Data de nascimento", nullptr));
         CPFCadastroPage->setText(QCoreApplication::translate("MainWindow", "CPF", nullptr));
-        NomeEditLine->setPlaceholderText(QCoreApplication::translate("MainWindow", "Nome completo", nullptr));
+        NomeEditLineCadastro->setPlaceholderText(QCoreApplication::translate("MainWindow", "Nome completo", nullptr));
         CadastrarInputButton->setText(QCoreApplication::translate("MainWindow", "Cadastrar", nullptr));
         GeneroComboBox->setItemText(0, QCoreApplication::translate("MainWindow", "Masculino", nullptr));
         GeneroComboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Feminino", nullptr));
@@ -638,6 +714,12 @@ public:
         telefoneEditLine->setInputMask(QCoreApplication::translate("MainWindow", "(99) 9 9999-9999", nullptr));
         telefoneEditLine->setText(QCoreApplication::translate("MainWindow", "()  -", nullptr));
         telefoneEditLine->setPlaceholderText(QCoreApplication::translate("MainWindow", "Telefone", nullptr));
+        UsuarioEditLineCadastro->setText(QString());
+        UsuarioEditLineCadastro->setPlaceholderText(QCoreApplication::translate("MainWindow", "Usu\303\241rio", nullptr));
+        SenhaEditLineCadastro->setText(QString());
+        SenhaEditLineCadastro->setPlaceholderText(QCoreApplication::translate("MainWindow", "Senha", nullptr));
+        UsuarioCadastroPage->setText(QCoreApplication::translate("MainWindow", "Usu\303\241rio", nullptr));
+        SenhaCadastroPage->setText(QCoreApplication::translate("MainWindow", "Senha", nullptr));
     } // retranslateUi
 
 };

@@ -14,11 +14,10 @@ class loginPage : public QDialog
     Q_OBJECT
 
 public:
-    explicit loginPage(QWidget *parent = nullptr);
+    explicit loginPage(QWidget *parent = nullptr, BancoDeDados banco = BancoDeDados());
     ~loginPage();
 
 private slots:
-    void on_label_linkActivated(const QString &link);
 
     void on_MostrarPasswordButton_clicked();
 
@@ -27,6 +26,7 @@ private slots:
 private:
     Ui::loginPage *ui;
     MainWindow *liderPage;
+    BancoDeDados banco;
 };
 
 #endif // LOGINPAGE_H

@@ -36,6 +36,7 @@ public:
     QPushButton *AtualizarButtonCP;
     QPushButton *EditarButtonCP;
     QPushButton *DeletarButtonCP;
+    QLineEdit *SubequipeBuscarCp;
     QWidget *RelatoriosPageCP;
     QFrame *frameCapPage;
     QVBoxLayout *verticalLayout;
@@ -73,7 +74,7 @@ public:
 "}"));
         NomeBuscarCP = new QLineEdit(HomePageCp);
         NomeBuscarCP->setObjectName("NomeBuscarCP");
-        NomeBuscarCP->setGeometry(QRect(580, 10, 391, 41));
+        NomeBuscarCP->setGeometry(QRect(650, 10, 321, 41));
         QFont font;
         font.setFamilies({QString::fromUtf8("Open Sans 61")});
         font.setPointSize(11);
@@ -200,6 +201,32 @@ public:
         icon3.addFile(QString::fromUtf8(":/debug/promocaorebaixamentoWhite.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         DeletarButtonCP->setIcon(icon3);
         DeletarButtonCP->setIconSize(QSize(24, 30));
+        SubequipeBuscarCp = new QLineEdit(HomePageCp);
+        SubequipeBuscarCp->setObjectName("SubequipeBuscarCp");
+        SubequipeBuscarCp->setGeometry(QRect(440, 10, 191, 41));
+        SubequipeBuscarCp->setFont(font);
+        SubequipeBuscarCp->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+"	font-family: Open Sans Light;\n"
+"	border: 2px solid rgb(37, 39, 48);\n"
+"	border-radius: 16px;\n"
+"	color: #FFF;\n"
+"	padding-left: 20px;\n"
+"	padding-right: 20px; \n"
+"	background-color: rgb(34, 36, 44);\n"
+"}\n"
+"\n"
+"QLiteEdit:hover {\n"
+"	border: 2px solid rgb(48, 50, 62);\n"
+"}\n"
+"\n"
+"QLiteEdit:focus {\n"
+"	border: 2px solid rgb(85, 170, 255);\n"
+"	background-color: rgb(43, 45, 56);\n"
+"}\n"
+""));
+        SubequipeBuscarCp->setMaxLength(200);
+        SubequipeBuscarCp->setAlignment(Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter);
+        SubequipeBuscarCp->setClearButtonEnabled(false);
         Janelas->addWidget(HomePageCp);
         RelatoriosPageCP = new QWidget();
         RelatoriosPageCP->setObjectName("RelatoriosPageCP");
@@ -299,6 +326,7 @@ public:
         AtualizarButtonCP->setText(QString());
         EditarButtonCP->setText(QCoreApplication::translate("CapPage", "Editar", nullptr));
         DeletarButtonCP->setText(QCoreApplication::translate("CapPage", " Promove/ Rebaixar", nullptr));
+        SubequipeBuscarCp->setPlaceholderText(QCoreApplication::translate("CapPage", "Sub-equipe", nullptr));
         homeButtonCp->setText(QCoreApplication::translate("CapPage", "In\303\255cio", nullptr));
         RelatorioButtonCP->setText(QCoreApplication::translate("CapPage", "Relat\303\263rios", nullptr));
         AtividadesButtonCP->setText(QCoreApplication::translate("CapPage", "Atividades", nullptr));

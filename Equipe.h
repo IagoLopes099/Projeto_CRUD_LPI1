@@ -30,9 +30,23 @@ public:
     int getAno(){return ano;}
 };
 
+class User{
+private:
+    String username;
+    String senha;
+public:
+    User(){};
+    User(String username, String senha) : username(username), senha(senha) {};
+
+    /*METODOS GET*/
+    String getUsername(){return username;}
+    String getSenha(){return senha;}
+};
+
 
 class Membro{
 protected:
+    User user;
     String nome;
     String cpf;
     String dataNascimento;
@@ -45,6 +59,11 @@ public:
     /*METODOS CONSTRUTORES*/
     Membro();
     Membro(String nome, String cpf, String subequipe, String genero, String dataNascimento, String email, String telefone);
+    Membro(String nome, String cpf, String subequipe, String genero, String dataNascimento, String email, String telefone, User user) :
+        Membro(nome, cpf, subequipe, genero, dataNascimento, email, telefone){
+        this->user = user;
+        setCargo("membro");
+    };
 
     /*METODOS GET*/
     String getNome(){return nome;}
@@ -55,6 +74,7 @@ public:
     String getEmail(){return email;}
     String getTelefone(){return telefone;}
     String getGenero(){return genero;}
+    User getUser(){return user;};
 
     /*METODOS SET*/
     void setNome(String nome){this->nome = nome;};
@@ -65,8 +85,10 @@ public:
     void setEmail(String email){this->email = email;};
     void setTelefone(String telefone){this->telefone = telefone;};
     void setGenero(String genero){this->genero = genero;};
+    void setUser(User user){this->user = user;};
 
 };//FIM CLASSE MEMBRO
+
 
 class Lider : public Membro{
 private:
@@ -91,6 +113,7 @@ public:
     void ListarMembros(QTableWidget *tabela, String subequipe);
     void BuscarMembro(String nome, QTableWidget *tabela, String subequipe);
 
+
 };//FIM CLASSE LIDER
 
 
@@ -101,6 +124,7 @@ public:
     bool PromoverLider(String nome, String data, String id);
     bool RebaixarLider(String nome, String id);
     void ListarMembrosCap(QTableWidget *tabela);
+    void BuscarMembro(String nome, QTableWidget *tabela, String subequipe);
 
 };//FIM CLASSE CAPITÃO
 
@@ -109,10 +133,13 @@ class BancoDeDados{
 private:
     Membro membro;
     std::vector<Membro> membros;
+    std::vector<Lider> lider;
+    std::vector<Capitao> capitao;
     String username;
     String password;
 
 public:
+
     //CONSTRUTORES
     BancoDeDados(){};
     BancoDeDados(String username, String password){
@@ -136,12 +163,11 @@ public:
     //OUTROS METODOS
     bool VerificarAbertura();
     bool Mover(String nome, String tabelaOrigem, String tabelaDestino, String data, String id);
-    QStringList VerificarLogin();
+    QStringList VerificarLogin(String username, String password);
     String RetornarIdTabela(String tabela);
     void AbrirBanco();
     void VerificarAbertura2();
     bool GerarRelatorio();
-
 
 };//FIM CLASSE BANCO DE DADOS
 

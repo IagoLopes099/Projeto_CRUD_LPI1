@@ -47,18 +47,22 @@ void MainWindow::on_homeButton_clicked()
 void MainWindow::on_CadastrarInputButton_clicked()
 {
 
-    String nome = ui->NomeEditLine->text();
+    String nome = ui->NomeEditLineCadastro->text();
     String CPF = ui->CPFEditLine->text();
-
-    if(nome.isEmpty() || CPF.isEmpty()){
-        QMessageBox::critical(this, "Erro", "Preencha todos os campos obrigatórios!");
-        return;
-    }
-
     String aniversario = ui->aniversarioCadastro->text();
     String email = ui->EmailEditLine->text();
     String telefone = ui->telefoneEditLine->text();
+    String username = ui->UsuarioEditLineCadastro->text();
+    String senha =  ui->SenhaEditLineCadastro->text();
+    std::vector<String> campos = {nome, CPF, aniversario, email, telefone, username, senha};
 
+
+    for(const auto& campo : campos){
+        if(campo.isEmpty()){
+            QMessageBox::critical(this, "Erro", "Preencha todos os campos obrigatórios!");
+            return;
+        }
+    }
 
     String resultadoCb = "";
     String genero = ui->GeneroComboBox->currentText();
@@ -104,23 +108,22 @@ void MainWindow::on_CadastrarInputButton_clicked()
     }
 
 
-
-    //Lider Lider(nome, CPF,resultadoCb, genero, aniversario, email, telefone,20);
+    User user(username,senha);
     Membro membro(nome, CPF,resultadoCb, genero, aniversario, email, telefone);
     Lider lider(membro);
 
     if(lider.CadastrarMembro(&banco)){
         QMessageBox::information(this,"Dados Digitados:","Usuário cadastrado com sucesso!");
-        ui->NomeEditLine->clear();
+        ui->NomeEditLineCadastro->clear();
         ui->CPFEditLine->clear();
         ui->telefoneEditLine->clear();
         ui->EmailEditLine->clear();
-        qDebug() << subequipeLider;
+        ui->UsuarioEditLineCadastro->clear();
+        ui->SenhaEditLineCadastro->clear();
     }else{
         QMessageBox::critical(this, "Erro no cadastro","Membro não cadastrado!");
     }
 }
-
 
 void MainWindow::on_DeletarButtonHP_clicked()
 {

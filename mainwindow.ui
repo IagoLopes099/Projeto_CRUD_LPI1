@@ -508,9 +508,9 @@ QPushButton:pressed {
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>20</y>
+        <y>0</y>
         <width>891</width>
-        <height>611</height>
+        <height>651</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -633,7 +633,7 @@ QPushButton:pressed {
         <string>CPF</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="NomeEditLine">
+      <widget class="QLineEdit" name="NomeEditLineCadastro">
        <property name="geometry">
         <rect>
          <x>50</x>
@@ -683,7 +683,7 @@ QLiteEdit:focus {
        <property name="geometry">
         <rect>
          <x>340</x>
-         <y>530</y>
+         <y>580</y>
          <width>171</width>
          <height>51</height>
         </rect>
@@ -785,7 +785,7 @@ QPushButton:pressed {
        <property name="geometry">
         <rect>
          <x>560</x>
-         <y>130</y>
+         <y>120</y>
          <width>289</width>
          <height>40</height>
         </rect>
@@ -812,7 +812,7 @@ QPushButton:pressed {
        <property name="geometry">
         <rect>
          <x>560</x>
-         <y>180</y>
+         <y>170</y>
          <width>241</width>
          <height>160</height>
         </rect>
@@ -934,8 +934,8 @@ QLiteEdit:focus {
       <widget class="QLabel" name="TelefoneCadastroPage">
        <property name="geometry">
         <rect>
-         <x>550</x>
-         <y>360</y>
+         <x>50</x>
+         <y>440</y>
          <width>289</width>
          <height>40</height>
         </rect>
@@ -961,8 +961,8 @@ QLiteEdit:focus {
       <widget class="QLineEdit" name="telefoneEditLine">
        <property name="geometry">
         <rect>
-         <x>550</x>
-         <y>410</y>
+         <x>50</x>
+         <y>490</y>
          <width>271</width>
          <height>41</height>
         </rect>
@@ -1026,6 +1026,158 @@ QLiteEdit:focus {
 	color: #FFF;
 
 }</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="UsuarioEditLineCadastro">
+       <property name="geometry">
+        <rect>
+         <x>560</x>
+         <y>390</y>
+         <width>281</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Open Sans 61</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	font-family: Open Sans Light;
+	border: 2px solid rgb(37, 39, 48);
+	border-radius: 16px;
+	color: #FFF;
+	padding-left: 20px;
+	padding-right: 20px; 
+	background-color: rgb(34, 36, 44);
+}
+
+QLiteEdit:hover {
+	border: 2px solid rgb(48, 50, 62);
+}
+
+QLiteEdit:focus {
+	border: 2px solid rgb(85, 170, 255);
+	background-color: rgb(43, 45, 56);
+}
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="maxLength">
+        <number>200</number>
+       </property>
+       <property name="placeholderText">
+        <string>Usuário</string>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="SenhaEditLineCadastro">
+       <property name="geometry">
+        <rect>
+         <x>560</x>
+         <y>490</y>
+         <width>281</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Open Sans 61</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	font-family: Open Sans Light;
+	border: 2px solid rgb(37, 39, 48);
+	border-radius: 16px;
+	color: #FFF;
+	padding-left: 20px;
+	padding-right: 20px; 
+	background-color: rgb(34, 36, 44);
+}
+
+QLiteEdit:hover {
+	border: 2px solid rgb(48, 50, 62);
+}
+
+QLiteEdit:focus {
+	border: 2px solid rgb(85, 170, 255);
+	background-color: rgb(43, 45, 56);
+}
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="maxLength">
+        <number>200</number>
+       </property>
+       <property name="placeholderText">
+        <string>Senha</string>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="UsuarioCadastroPage">
+       <property name="geometry">
+        <rect>
+         <x>560</x>
+         <y>340</y>
+         <width>289</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LayoutDirection::LeftToRight</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	font-family: Open Sans Light;
+	font-size: 20px;
+	color: #FFF;
+	
+}</string>
+       </property>
+       <property name="text">
+        <string>Usuário</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="SenhaCadastroPage">
+       <property name="geometry">
+        <rect>
+         <x>560</x>
+         <y>440</y>
+         <width>289</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LayoutDirection::LeftToRight</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	font-family: Open Sans Light;
+	font-size: 20px;
+	color: #FFF;
+	
+}</string>
+       </property>
+       <property name="text">
+        <string>Senha</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
      </widget>

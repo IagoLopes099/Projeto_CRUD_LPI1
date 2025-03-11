@@ -126,9 +126,11 @@ void BuscarJanela::on_EditarButton_clicked()
 
 
 
-
+    //User user(ui->UsuarioEditLine->text(), ui->SenhaEditLine->text());
     Lider Lider(nome, CPF, subequipe, genero, aniversario, email, telefone,20);
 
+    //Membro novoMembro(nome, CPF, subequipe, genero, aniversario, email, telefone, user);
+    //Lider Lider(novoMembro);
 
     if(!Lider.EditarMembro(QString::number(id), Lider)){
         QMessageBox::warning(this,"Erro", "Algo inesperado ocorreu na edição!");

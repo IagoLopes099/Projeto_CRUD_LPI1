@@ -7,13 +7,13 @@
 #include <QSqlDatabase>
 #include "cappage.h"
 
-loginPage::loginPage(QWidget *parent)
+
+loginPage::loginPage(QWidget *parent, BancoDeDados banco)
     : QDialog(parent)
     , ui(new Ui::loginPage)
+    , banco(banco)
 {
     ui->setupUi(this);
-
-    BancoDeDados banco;
 
     banco.AbrirBanco();
 
@@ -37,16 +37,16 @@ void loginPage::on_MostrarPasswordButton_clicked()
 
 
 void loginPage::on_LoginButton_clicked()
-{
+{   
     QString username = ui->UsernameEditLine->text().toLower();
     QString password = ui->PasswordEditLine->text();
 
-    BancoDeDados banco(username, password);
+    if(username.isEmpty() || password.isEmpty()){
+        QMessageBox::warning(this, "Erro ao logar","Usuário ou senha inválidos!");
+        return;
+    }
 
-    QStringList resposta = banco.VerificarLogin();
-    /*
-    qDebug() << resposta[0];
-    qDebug() << resposta[1];*/
+    QStringList resposta = banco.VerificarLogin(username, password);
 
     if(resposta[0] == "lider"){
         this->close();

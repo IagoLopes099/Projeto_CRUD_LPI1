@@ -27,17 +27,13 @@ CapPage::~CapPage()
     delete ui;
 }
 
-
-
-
 void CapPage::on_BuscarButtonCP_clicked()
 {
     QString nome = ui->NomeBuscarCP->text().toLower();
 
     Capitao cap;
 
-    cap.BuscarMembro(nome, ui->listarMembrosCP, "");
-
+    cap.BuscarMembro(nome, ui->listarMembrosCP, ui->SubequipeBuscarCp->text());
 }
 
 

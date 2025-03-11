@@ -50,19 +50,23 @@ public:
     QLabel *EmailEditando;
     QLabel *TelefoneEditando;
     QLineEdit *dataEditando;
+    QLineEdit *UsuarioEditLine;
+    QLabel *UsuarioEditando;
+    QLineEdit *SenhaEditLine;
+    QLabel *SenhaEditando;
 
     void setupUi(QDialog *BuscarJanela)
     {
         if (BuscarJanela->objectName().isEmpty())
             BuscarJanela->setObjectName("BuscarJanela");
-        BuscarJanela->resize(950, 650);
+        BuscarJanela->resize(950, 710);
         QSizePolicy sizePolicy(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(BuscarJanela->sizePolicy().hasHeightForWidth());
         BuscarJanela->setSizePolicy(sizePolicy);
-        BuscarJanela->setMinimumSize(QSize(950, 650));
-        BuscarJanela->setMaximumSize(QSize(950, 650));
+        BuscarJanela->setMinimumSize(QSize(950, 710));
+        BuscarJanela->setMaximumSize(QSize(950, 710));
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/debug/editarWhite.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         BuscarJanela->setWindowIcon(icon);
@@ -71,7 +75,7 @@ public:
 "}"));
         frameEditando = new QFrame(BuscarJanela);
         frameEditando->setObjectName("frameEditando");
-        frameEditando->setGeometry(QRect(20, 20, 891, 611));
+        frameEditando->setGeometry(QRect(20, 20, 891, 671));
         frameEditando->setStyleSheet(QString::fromUtf8("QFrame{\n"
 "	background-color: rgba(30,30,30,255);\n"
 "	border-radius: 20px;\n"
@@ -151,7 +155,7 @@ public:
         NomeEditando->setClearButtonEnabled(false);
         EditarButton = new QPushButton(frameEditando);
         EditarButton->setObjectName("EditarButton");
-        EditarButton->setGeometry(QRect(250, 530, 171, 51));
+        EditarButton->setGeometry(QRect(250, 590, 171, 51));
         EditarButton->setStyleSheet(QString::fromUtf8("/*QPushButton{\n"
 "	border-radius: 10px;\n"
 "	background-color: rgba(60,60,60,255);\n"
@@ -192,10 +196,10 @@ public:
         generoEditando->addItem(QString());
         generoEditando->addItem(QString());
         generoEditando->setObjectName("generoEditando");
-        generoEditando->setGeometry(QRect(560, 70, 261, 41));
+        generoEditando->setGeometry(QRect(530, 70, 261, 41));
         GeneroEditando = new QLabel(frameEditando);
         GeneroEditando->setObjectName("GeneroEditando");
-        GeneroEditando->setGeometry(QRect(560, 20, 289, 40));
+        GeneroEditando->setGeometry(QRect(530, 20, 289, 40));
         GeneroEditando->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         GeneroEditando->setStyleSheet(QString::fromUtf8("QLabel{\n"
 "	font-family: Open Sans Light;\n"
@@ -206,7 +210,7 @@ public:
         GeneroEditando->setAlignment(Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter);
         SubequipeEditando = new QLabel(frameEditando);
         SubequipeEditando->setObjectName("SubequipeEditando");
-        SubequipeEditando->setGeometry(QRect(560, 130, 289, 40));
+        SubequipeEditando->setGeometry(QRect(530, 130, 289, 40));
         SubequipeEditando->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         SubequipeEditando->setStyleSheet(QString::fromUtf8("QLabel{\n"
 "	font-family: Open Sans Light;\n"
@@ -217,7 +221,7 @@ public:
         SubequipeEditando->setAlignment(Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter);
         layoutWidget = new QWidget(frameEditando);
         layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(560, 190, 241, 160));
+        layoutWidget->setGeometry(QRect(530, 190, 241, 160));
         verticalLayout_3 = new QVBoxLayout(layoutWidget);
         verticalLayout_3->setObjectName("verticalLayout_3");
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
@@ -248,7 +252,7 @@ public:
 
         cancelarEditButton = new QPushButton(frameEditando);
         cancelarEditButton->setObjectName("cancelarEditButton");
-        cancelarEditButton->setGeometry(QRect(430, 530, 171, 51));
+        cancelarEditButton->setGeometry(QRect(430, 590, 171, 51));
         cancelarEditButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	font-family: Open Sans Light;\n"
 "	font-size:18px ;\n"
@@ -296,7 +300,7 @@ public:
         EmailEdit->setClearButtonEnabled(false);
         telefoneEdit = new QLineEdit(frameEditando);
         telefoneEdit->setObjectName("telefoneEdit");
-        telefoneEdit->setGeometry(QRect(550, 420, 271, 41));
+        telefoneEdit->setGeometry(QRect(50, 500, 271, 41));
         telefoneEdit->setFont(font);
         telefoneEdit->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
 "	font-family: Open Sans Light;\n"
@@ -332,7 +336,7 @@ public:
         EmailEditando->setAlignment(Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter);
         TelefoneEditando = new QLabel(frameEditando);
         TelefoneEditando->setObjectName("TelefoneEditando");
-        TelefoneEditando->setGeometry(QRect(550, 370, 289, 40));
+        TelefoneEditando->setGeometry(QRect(50, 450, 289, 40));
         TelefoneEditando->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         TelefoneEditando->setStyleSheet(QString::fromUtf8("QLabel{\n"
 "	font-family: Open Sans Light;\n"
@@ -366,6 +370,78 @@ public:
 ""));
         dataEditando->setMaxLength(10);
         dataEditando->setClearButtonEnabled(false);
+        UsuarioEditLine = new QLineEdit(frameEditando);
+        UsuarioEditLine->setObjectName("UsuarioEditLine");
+        UsuarioEditLine->setGeometry(QRect(530, 410, 281, 41));
+        UsuarioEditLine->setFont(font);
+        UsuarioEditLine->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+"	font-family: Open Sans Light;\n"
+"	border: 2px solid rgb(37, 39, 48);\n"
+"	border-radius: 16px;\n"
+"	color: #FFF;\n"
+"	padding-left: 20px;\n"
+"	padding-right: 20px; \n"
+"	background-color: rgb(34, 36, 44);\n"
+"}\n"
+"\n"
+"QLiteEdit:hover {\n"
+"	border: 2px solid rgb(48, 50, 62);\n"
+"}\n"
+"\n"
+"QLiteEdit:focus {\n"
+"	border: 2px solid rgb(85, 170, 255);\n"
+"	background-color: rgb(43, 45, 56);\n"
+"}\n"
+""));
+        UsuarioEditLine->setMaxLength(200);
+        UsuarioEditLine->setClearButtonEnabled(false);
+        UsuarioEditando = new QLabel(frameEditando);
+        UsuarioEditando->setObjectName("UsuarioEditando");
+        UsuarioEditando->setGeometry(QRect(530, 360, 289, 40));
+        UsuarioEditando->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
+        UsuarioEditando->setStyleSheet(QString::fromUtf8("QLabel{\n"
+"	font-family: Open Sans Light;\n"
+"	font-size: 20px;\n"
+"	color: #FFF;\n"
+"	\n"
+"}"));
+        UsuarioEditando->setAlignment(Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter);
+        SenhaEditLine = new QLineEdit(frameEditando);
+        SenhaEditLine->setObjectName("SenhaEditLine");
+        SenhaEditLine->setGeometry(QRect(530, 510, 291, 41));
+        SenhaEditLine->setFont(font);
+        SenhaEditLine->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+"	font-family: Open Sans Light;\n"
+"	border: 2px solid rgb(37, 39, 48);\n"
+"	border-radius: 16px;\n"
+"	color: #FFF;\n"
+"	padding-left: 20px;\n"
+"	padding-right: 20px; \n"
+"	background-color: rgb(34, 36, 44);\n"
+"}\n"
+"\n"
+"QLiteEdit:hover {\n"
+"	border: 2px solid rgb(48, 50, 62);\n"
+"}\n"
+"\n"
+"QLiteEdit:focus {\n"
+"	border: 2px solid rgb(85, 170, 255);\n"
+"	background-color: rgb(43, 45, 56);\n"
+"}\n"
+""));
+        SenhaEditLine->setMaxLength(200);
+        SenhaEditLine->setClearButtonEnabled(false);
+        SenhaEditando = new QLabel(frameEditando);
+        SenhaEditando->setObjectName("SenhaEditando");
+        SenhaEditando->setGeometry(QRect(530, 460, 289, 40));
+        SenhaEditando->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
+        SenhaEditando->setStyleSheet(QString::fromUtf8("QLabel{\n"
+"	font-family: Open Sans Light;\n"
+"	font-size: 20px;\n"
+"	color: #FFF;\n"
+"	\n"
+"}"));
+        SenhaEditando->setAlignment(Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter);
 
         retranslateUi(BuscarJanela);
 
@@ -404,6 +480,12 @@ public:
         dataEditando->setInputMask(QCoreApplication::translate("BuscarJanela", "99/99/9999", nullptr));
         dataEditando->setText(QCoreApplication::translate("BuscarJanela", "//", nullptr));
         dataEditando->setPlaceholderText(QCoreApplication::translate("BuscarJanela", "Nascimento", nullptr));
+        UsuarioEditLine->setText(QString());
+        UsuarioEditLine->setPlaceholderText(QCoreApplication::translate("BuscarJanela", "Usu\303\241rio", nullptr));
+        UsuarioEditando->setText(QCoreApplication::translate("BuscarJanela", "Usu\303\241rio", nullptr));
+        SenhaEditLine->setText(QString());
+        SenhaEditLine->setPlaceholderText(QCoreApplication::translate("BuscarJanela", "Senha", nullptr));
+        SenhaEditando->setText(QCoreApplication::translate("BuscarJanela", "Senha", nullptr));
     } // retranslateUi
 
 };

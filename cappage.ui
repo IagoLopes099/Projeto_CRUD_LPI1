@@ -66,9 +66,9 @@
     <widget class="QLineEdit" name="NomeBuscarCP">
      <property name="geometry">
       <rect>
-       <x>580</x>
+       <x>650</x>
        <y>10</y>
-       <width>391</width>
+       <width>321</width>
        <height>41</height>
       </rect>
      </property>
@@ -282,6 +282,55 @@ QPushButton:pressed {
        <width>24</width>
        <height>30</height>
       </size>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="SubequipeBuscarCp">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>10</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Open Sans 61</family>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLineEdit{
+	font-family: Open Sans Light;
+	border: 2px solid rgb(37, 39, 48);
+	border-radius: 16px;
+	color: #FFF;
+	padding-left: 20px;
+	padding-right: 20px; 
+	background-color: rgb(34, 36, 44);
+}
+
+QLiteEdit:hover {
+	border: 2px solid rgb(48, 50, 62);
+}
+
+QLiteEdit:focus {
+	border: 2px solid rgb(85, 170, 255);
+	background-color: rgb(43, 45, 56);
+}
+</string>
+     </property>
+     <property name="maxLength">
+      <number>200</number>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+     <property name="placeholderText">
+      <string>Sub-equipe</string>
+     </property>
+     <property name="clearButtonEnabled">
+      <bool>false</bool>
      </property>
     </widget>
    </widget>

@@ -10,6 +10,7 @@
 #include <QTableWidget>
 #include <QHeaderView>
 #include <QApplication>
+#include <fstream>
 
 
 using namespace std;
@@ -62,10 +63,25 @@ Membro::Membro(String nome, String cpf, String subequipe, String genero, String 
     this->email = email;
     this->telefone = telefone;
     this->genero = genero;
+    setCargo("membro");
 }
 
 
 /*----------------------------------------------INICIO DOS METODOS DA CLASSE LIDER--------------------------------------------------------*/
+
+Lider::Lider(String nome, String cpf, String subequipe, String genero, String dataNascimento, String email, String telefone, int dataPromocao) :
+    Membro(nome,cpf,subequipe,genero,dataNascimento,email,telefone)
+{
+    this->dataPromocao = dataPromocao;
+    setCargo("lider");
+}
+
+
+void Lider::SetDataPromocao(int n){
+    this->dataPromocao = n;
+}
+
+
 bool Lider::CadastrarMembro(BancoDeDados* banco){
 
     if (!banco->VerificarAbertura()) {
@@ -146,48 +162,17 @@ void Lider::BuscarMembro(String nome, QTableWidget *tabela, String subequipe){
 
     String prepare;
 
-    if(subequipe == ""){ // AQUI É CAPITÃO GERAL
+    int tamVetor = 8;
+    int posVetor[] = {0, 1, 4, 6, 5, 10, 9, 8};
+    int largVetor[] = {30, 250, 30, 75, 125, 100, 150, 140};
 
-        prepare = "SELECT id_usuarios as id, nome, cargo, genero, subequipe, data_nascimento, cpf, email, telefone "
-                  "FROM tb_usuarios WHERE nome LIKE '%" + nome + "%' "
-                           "UNION ALL "
-                           "SELECT id_lideres as id, nome, cargo, genero, subequipe, data_nascimento, cpf, email, telefone "
-                           "FROM tb_lideres "
-                           "WHERE nome LIKE '%" + nome + "%'";
+    QStringList cabecalho = {"ID", "Nome", "Sexo", "Sub-equipe", "Data de Nascimento", "CPF", "Email", "Telefone"};
 
-        int tamVetor = 9;
-        int posVetor[] = {0,1,3,2,4,5,6,7,8};
-        int largVetor[] = {30,250,30,50,125, 100, 150, 140,140};
+    prepare = "SELECT * FROM tb_usuarios where nome LIKE \"%"+nome+ "%\" and subequipe='"+subequipe+ "'";
 
-        QStringList cabecalho = {"ID", "Nome", "Sexo","Cargo", "Sub-equipe", "Data de Nascimento", "CPF", "Email", "Telefone"};
-
-        Listar(tamVetor, posVetor, largVetor, tabela, prepare, cabecalho);
-
-    }else{ // AQUI É LIDER
-
-        int tamVetor = 8;
-        int posVetor[] = {0, 1, 4, 6, 5, 10, 9, 8};
-        int largVetor[] = {30, 250, 30, 75, 125, 100, 150, 140};
-
-        QStringList cabecalho = {"ID", "Nome", "Sexo", "Sub-equipe", "Data de Nascimento", "CPF", "Email", "Telefone"};
-
-        prepare = "SELECT * FROM tb_usuarios where nome LIKE \"%"+nome+ "%\" and subequipe='"+subequipe+ "'";
-
-        Listar(tamVetor, posVetor, largVetor, tabela, prepare, cabecalho);
-    }
+    Listar(tamVetor, posVetor, largVetor, tabela, prepare, cabecalho);
 }
 
-
-Lider::Lider(String nome, String cpf, String subequipe, String genero, String dataNascimento, String email, String telefone, int dataPromocao) :
-    Membro(nome,cpf,subequipe,genero,dataNascimento,email,telefone)
-{
-    this->dataPromocao = dataPromocao;
-}
-
-
-void Lider::SetDataPromocao(int n){
-    this->dataPromocao = n;
-}
 
 /*-------------------------------------------------------METODOS DA CLASSE CAPITAO-------------------------------------------------------*/
 
@@ -238,6 +223,46 @@ void Capitao::ListarMembrosCap(QTableWidget *tabela){
 
 }
 
+void Capitao::BuscarMembro(String nome, QTableWidget *tabela, String subequipe){
+
+    String prepare;
+
+    if(subequipe == ""){ // AQUI É CAPITÃO GERAL
+
+        prepare = "SELECT id_usuarios as id, nome, cargo, genero, subequipe, data_nascimento, cpf, email, telefone "
+                  "FROM tb_usuarios WHERE nome LIKE '%" + nome + "%' "
+                           "UNION ALL "
+                           "SELECT id_lideres as id, nome, cargo, genero, subequipe, data_nascimento, cpf, email, telefone "
+                           "FROM tb_lideres "
+                           "WHERE nome LIKE '%" + nome + "%'";
+
+        int tamVetor = 9;
+        int posVetor[] = {0,1,3,2,4,5,6,7,8};
+        int largVetor[] = {30,250,30,50,125, 100, 150, 140,140};
+
+        QStringList cabecalho = {"ID", "Nome", "Sexo","Cargo", "Sub-equipe", "Data de Nascimento", "CPF", "Email", "Telefone"};
+
+        Listar(tamVetor, posVetor, largVetor, tabela, prepare, cabecalho);
+
+    }else{ // AQUI É LIDER
+
+        prepare = "SELECT id_usuarios as id, nome, cargo, genero, subequipe, data_nascimento, cpf, email, telefone "
+                  "FROM tb_usuarios "
+                  "WHERE nome LIKE '%" + nome + "%' AND subequipe LIKE '%" + subequipe + "%' UNION ALL "
+                    "SELECT id_lideres as id, nome, cargo, genero, subequipe, data_nascimento, cpf, email, telefone "
+                    "FROM tb_lideres "
+                    "WHERE nome LIKE '%" + nome + "%' AND subequipe LIKE '%" + subequipe + "%'";
+
+        int tamVetor = 9;
+        int posVetor[] = {0,1,3,2,4,5,6,7,8};
+        int largVetor[] = {30,250,30,50,125, 100, 150, 140,140};
+
+        QStringList cabecalho = {"ID", "Nome", "Sexo","Cargo", "Sub-equipe", "Data de Nascimento", "CPF", "Email", "Telefone"};
+
+        Listar(tamVetor, posVetor, largVetor, tabela, prepare, cabecalho);
+    }
+}
+
 
 /*-------------------------------------------------------METODOS DA CLASSE BANCO-------------------------------------------------------*/
 
@@ -252,19 +277,6 @@ bool BancoDeDados::VerificarAbertura(){
         return true;
     }
 }
-
-void BancoDeDados::VerificarAbertura2(){
-
-    QSqlDatabase db = QSqlDatabase::database();
-
-    if (!db.isOpen()) {
-        qDebug() << "Banco de dados não está aberto!";
-        AbrirBanco();
-    }else{
-        qDebug() << "Não foi possivel reabrir o banco!";
-    }
-}
-
 
 void BancoDeDados::AbrirBanco(){
 
@@ -289,7 +301,7 @@ void BancoDeDados::AbrirBanco(){
 }
 
 
-QStringList BancoDeDados::VerificarLogin(){
+QStringList BancoDeDados::VerificarLogin(String username, String password){
 
     QStringList resposta;
 
@@ -330,11 +342,19 @@ QStringList BancoDeDados::VerificarLogin(){
             }
         }else{
             qDebug() << "Erro ao realizar consulta: " <<query.lastError().text();
+
+        }
+
+        if(resposta.isEmpty()){
+            resposta << "Error 2";
+            resposta << "Error 2";
         }
 
         return resposta;
     }
 }
+
+
 
 
 bool BancoDeDados::Mover(String nome, String tabelaOrigem, String tabelaDestino, String data, String id){
@@ -459,8 +479,10 @@ String BancoDeDados::RetornarIdTabela(String tabela){
 bool BancoDeDados::CadastrarMembro(Membro Membro){
 
     QSqlQuery query;
-    query.prepare("insert into tb_usuarios (nome,subequipe,cpf,genero,data_nascimento,email, telefone) values "
-                    "('"+Membro.getNome().toLower()+"',\""+Membro.getSubequipe()+"\",\""+Membro.getCpf()+"\",\""+Membro.getGenero()+"\",\""+Membro.getDataNascimento()+"\",\""+Membro.getEmail()+"\",\""+Membro.getTelefone()+"\")");
+    query.prepare("insert into tb_usuarios (nome,subequipe,cpf,genero,data_nascimento,email, telefone, username, password) values "
+                    "('"+Membro.getNome().toLower()+"',\""+Membro.getSubequipe()+"\","
+                    "\""+Membro.getCpf()+"\",\""+Membro.getGenero()+"\",\""+Membro.getDataNascimento()+"\","
+                    "\""+Membro.getEmail()+"\",\""+Membro.getTelefone()+"\",\""+Membro.getUser().getUsername()+"\",\""+Membro.getUser().getSenha()+"\")");
 
     if(!VerificarAbertura()){
         AbrirBanco();
@@ -473,3 +495,11 @@ bool BancoDeDados::CadastrarMembro(Membro Membro){
         }
     }
 }
+
+/*
+bool BancoDeDados::GerarRelatorio(){
+    ofstream arquivo;
+
+    arquivo.open("relatorioCrud.txt");
+
+}*/
