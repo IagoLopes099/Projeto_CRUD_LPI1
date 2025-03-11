@@ -6,6 +6,7 @@
 #include <QApplication>
 #include <QSqlDatabase>
 #include "cappage.h"
+#include <vector>
 
 
 loginPage::loginPage(QWidget *parent, BancoDeDados banco)

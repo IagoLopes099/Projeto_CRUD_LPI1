@@ -47,6 +47,7 @@ public:
 class Membro{
 protected:
     User user;
+    int id;
     String nome;
     String cpf;
     String dataNascimento;
@@ -55,6 +56,7 @@ protected:
     String email;
     String telefone;
     String genero;
+    String dataAdmissao;
 public:
     /*METODOS CONSTRUTORES*/
     Membro();
@@ -74,6 +76,8 @@ public:
     String getEmail(){return email;}
     String getTelefone(){return telefone;}
     String getGenero(){return genero;}
+    String getDataAdmissao(){return dataAdmissao;};
+    int getId(){return id;}
     User getUser(){return user;};
 
     /*METODOS SET*/
@@ -85,6 +89,8 @@ public:
     void setEmail(String email){this->email = email;};
     void setTelefone(String telefone){this->telefone = telefone;};
     void setGenero(String genero){this->genero = genero;};
+    void setDataAdmissao(String dataAdmissao){this->dataAdmissao = dataAdmissao;};
+    void setId(int id){this->id = id;};
     void setUser(User user){this->user = user;};
 
 };//FIM CLASSE MEMBRO
@@ -132,9 +138,9 @@ public:
 class BancoDeDados{
 private:
     Membro membro;
-    std::vector<Membro> membros;
-    std::vector<Lider> lider;
-    std::vector<Capitao> capitao;
+    std::vector<Membro> todosOsMembros;
+    std::vector<Lider> todosOsLideres;
+    std::vector<Capitao> todosOsCapitaes;
     String username;
     String password;
 
@@ -153,12 +159,17 @@ public:
     String getUsername(){return username;};
     String getPassword(){return password;};
     Membro getMembro(){return membro;};
+    std::vector<Membro> getMembros(){return todosOsMembros;};
 
     //METODOS CRUD
     void ListarId(int id);
     void ListarNome(String nome);
+   // std::vector<Membro> ListarMembros();
+    void ListarMembros();
     bool deletar(String id, String tabela);
     bool CadastrarMembro(Membro Membro);
+
+
 
     //OUTROS METODOS
     bool VerificarAbertura();

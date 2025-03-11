@@ -503,3 +503,33 @@ bool BancoDeDados::GerarRelatorio(){
     arquivo.open("relatorioCrud.txt");
 
 }*/
+
+void BancoDeDados::ListarMembros(){
+    std::vector<Membro> todosOsMembros;
+
+    QSqlQuery query;
+    query.prepare("SELECT * FROM tb_usuarios");
+    if(query.exec()){
+        while(query.next()){
+            Membro membro;
+            User user(query.value(2).toString(), query.value(3).toString());
+            membro.setId(query.value(0).toInt());
+            membro.setNome(query.value(1).toString());
+            membro.setUser(user);
+            membro.setGenero(query.value(4).toString());
+            membro.setDataNasc(query.value(5).toString());
+            membro.setSubequipe(query.value(6).toString());
+            membro.setCargo(query.value(7).toString());
+            membro.setTelefone(query.value(8).toString());
+            membro.setEmail(query.value(9).toString());
+            membro.setCpf(query.value(10).toString());
+            membro.setDataAdmissao(query.value(11).toString());
+            todosOsMembros.push_back(membro);
+        }
+    }
+
+    this->todosOsMembros = todosOsMembros;
+}
+
+
+

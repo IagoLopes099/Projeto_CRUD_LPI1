@@ -23,18 +23,48 @@ MainWindow::MainWindow(QWidget *parent, String subequipe_lider)
     Lider Lider;
     Lider.ListarMembros(ui->listarMembros, subequipeLider);
 
+    banco.ListarMembros();
+
+    for(Membro membro : banco.getMembros() ){
+        qDebug() << "nome: " << membro.getNome();
+    }
+
 }
 
+void SelecionarButton(QRadioButton* button,QRadioButton* button2,QRadioButton* button3,QRadioButton* button4,QRadioButton* button5){
+    button->setChecked(true);
+    button->setEnabled(false);
+    button2->setEnabled(false);
+    button3->setEnabled(false);
+    button4->setEnabled(false);
+    button5->setEnabled(false);
+}
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
-
 void MainWindow::on_CadastrarButton_clicked()
 {
     ui->Janelas->setCurrentIndex(1);
+
+    if (subequipeLider == "powertrain") {
+        SelecionarButton(ui->PowertrainCb, ui->AdminCb, ui->DrivetrainCb, ui->EletricaCb ,ui->DinamicaCb);
+
+    }else if(subequipeLider == "admin"){
+        SelecionarButton(ui->AdminCb,ui->PowertrainCb,ui->DrivetrainCb,ui->EletricaCb,ui->DinamicaCb);
+
+    }else if(subequipeLider == "dinamica veicular"){
+        SelecionarButton(ui->DinamicaCb,ui->AdminCb,ui->DrivetrainCb,ui->EletricaCb,ui->PowertrainCb);
+
+    }else if(subequipeLider == "drivetrain"){
+        SelecionarButton(ui->DrivetrainCb,ui->AdminCb,ui->PowertrainCb,ui->EletricaCb,ui->DinamicaCb);
+
+    }else if(subequipeLider == "elétrica"){
+         SelecionarButton(ui->EletricaCb,ui->AdminCb,ui->PowertrainCb,ui->DrivetrainCb,ui->DinamicaCb);
+
+    }
 }
 
 void MainWindow::on_homeButton_clicked()
@@ -64,6 +94,7 @@ void MainWindow::on_CadastrarInputButton_clicked()
         }
     }
 
+
     String resultadoCb = "";
     String genero = ui->GeneroComboBox->currentText();
     if(genero == "Masculino"){
@@ -75,6 +106,7 @@ void MainWindow::on_CadastrarInputButton_clicked()
     }
 
 
+    /*
     if(ui->AdminCb->isChecked()){
         resultadoCb+="Admin";
         ui->AdminCb->setAutoExclusive(false);
@@ -105,7 +137,7 @@ void MainWindow::on_CadastrarInputButton_clicked()
         ui->EletricaCb->setChecked(false);
         ui->EletricaCb->setAutoExclusive(true);
 
-    }
+    }*/
 
 
     User user(username,senha);
