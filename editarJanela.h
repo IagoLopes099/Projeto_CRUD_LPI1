@@ -22,6 +22,7 @@ private slots:
 
 private:
     Ui::BuscarJanela *ui;
+    int id;
 };
 
 #endif // EDITARJANELA_H

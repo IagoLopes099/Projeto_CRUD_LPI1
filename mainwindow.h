@@ -40,5 +40,6 @@ private:
     Ui::MainWindow *ui;
     String subequipeLider;
     BancoDeDados banco;
+    Lider lider;
 };
 #endif // MAINWINDOW_H

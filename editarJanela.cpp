@@ -12,6 +12,7 @@ static int id;
 BuscarJanela::BuscarJanela(QWidget *parent, int id_Membro)
     : QDialog(parent)
     , ui(new Ui::BuscarJanela)
+    , id(id_Membro)
 {
     ui->setupUi(this);
 
@@ -20,7 +21,6 @@ BuscarJanela::BuscarJanela(QWidget *parent, int id_Membro)
     QSqlQuery query;
     query.prepare("select * from tb_usuarios where id_usuarios =" + QString::number(id_Membro));
 
-    //BancoDeDados* banco = BancoDeDados::getInstance();
 
     if(query.exec()){
 
@@ -124,13 +124,8 @@ void BuscarJanela::on_EditarButton_clicked()
     else if (ui->DrivetrainCbEdit->isChecked()) subequipe = "drivetrain";
     else if (ui->EletricaCbEdit->isChecked()) subequipe = "elétrica";
 
+    Lider Lider(nome, CPF, subequipe, genero, aniversario, email, telefone,"lider",id,20);
 
-
-    //User user(ui->UsuarioEditLine->text(), ui->SenhaEditLine->text());
-    Lider Lider(nome, CPF, subequipe, genero, aniversario, email, telefone,20);
-
-    //Membro novoMembro(nome, CPF, subequipe, genero, aniversario, email, telefone, user);
-    //Lider Lider(novoMembro);
 
     if(!Lider.EditarMembro(QString::number(id), Lider)){
         QMessageBox::warning(this,"Erro", "Algo inesperado ocorreu na edição!");

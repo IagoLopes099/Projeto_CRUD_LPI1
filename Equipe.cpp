@@ -15,6 +15,43 @@
 
 using namespace std;
 
+
+void Listar2(BancoDeDados* banco, QTableWidget* tabela,int *largVetor, QStringList cabecalho){
+
+    int linha = 0;
+    tabela->setRowCount(0);
+    tabela->setColumnCount(cabecalho.size());
+    int lastId = -1000;
+
+    for(Membro &membro : banco->getReferenciaMembro()){
+        tabela->insertRow(linha);
+
+        tabela->setItem(linha, 0, new QTableWidgetItem(QString::number(membro.getId())));
+        tabela->setItem(linha, 1, new QTableWidgetItem(membro.getNome()));
+        tabela->setItem(linha, 2, new QTableWidgetItem(membro.getGenero()));
+        tabela->setItem(linha, 3, new QTableWidgetItem(membro.getSubequipe()));
+        tabela->setItem(linha, 4, new QTableWidgetItem(membro.getDataNascimento()));
+        tabela->setItem(linha, 5, new QTableWidgetItem(membro.getCpf()));
+        tabela->setItem(linha, 6, new QTableWidgetItem(membro.getEmail()));
+        tabela->setItem(linha, 7, new QTableWidgetItem(membro.getTelefone()));
+
+
+
+        linha++;
+    }
+
+    for(int i = 0; i< cabecalho.size() ; i++){
+        tabela->setColumnWidth(i, largVetor[i]);
+    }
+
+    tabela->setHorizontalHeaderLabels(cabecalho);
+    tabela->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    tabela->setSelectionBehavior(QAbstractItemView::SelectRows);
+    tabela->verticalHeader()->setVisible(false);
+
+}
+
+
 void Listar(int tamVetor, int *posVetor,int *largVetor, QTableWidget* tabela, String prepare, QStringList cabecalho){
 
     BancoDeDados banco;
@@ -48,20 +85,23 @@ void Listar(int tamVetor, int *posVetor,int *largVetor, QTableWidget* tabela, St
     } else {
         qDebug() << "Erro ao executar consulta: " << query.lastError().text();
     }
+
 }//FIM DA FUNÇÃO LISTAR
 
 
 /*----------------------------------------------INICIO DOS METODOS DA CLASSE MEMBRO--------------------------------------------------------*/
 Membro::Membro(){}
 
-Membro::Membro(String nome, String cpf, String subequipe, String genero, String dataNascimento, String email, String telefone)
+Membro::Membro(String nome, String cpf, String subequipe, String genero, String dataNascimento, String email, String telefone, String cargo, int id)
 {
+    this->id = id;
     this->nome = nome;
     this->cpf = cpf;
     this->dataNascimento = dataNascimento;
     this->subequipe = subequipe;
     this->email = email;
     this->telefone = telefone;
+    this->cargo = cargo;
     this->genero = genero;
     setCargo("membro");
 }
@@ -69,8 +109,8 @@ Membro::Membro(String nome, String cpf, String subequipe, String genero, String 
 
 /*----------------------------------------------INICIO DOS METODOS DA CLASSE LIDER--------------------------------------------------------*/
 
-Lider::Lider(String nome, String cpf, String subequipe, String genero, String dataNascimento, String email, String telefone, int dataPromocao) :
-    Membro(nome,cpf,subequipe,genero,dataNascimento,email,telefone)
+Lider::Lider(String nome, String cpf, String subequipe, String genero, String dataNascimento, String email, String telefone, String cargo, int id, int dataPromocao) :
+    Membro(nome,cpf,subequipe,genero,dataNascimento,email,telefone, cargo, id)
 {
     this->dataPromocao = dataPromocao;
     setCargo("lider");
@@ -79,6 +119,19 @@ Lider::Lider(String nome, String cpf, String subequipe, String genero, String da
 
 void Lider::SetDataPromocao(int n){
     this->dataPromocao = n;
+}
+
+
+int Lider::getLastId(BancoDeDados* banco){
+
+    int lastId = -10000;
+    for(Membro &membro : banco->getReferenciaMembro()){
+        if(membro.getId() > lastId){
+            lastId = membro.getId();
+        }
+    }
+    return lastId;
+
 }
 
 
@@ -142,25 +195,18 @@ bool Lider::DeletarMembro(String id, BancoDeDados* banco){
     }
 }
 
+bool Lider::DeletarMembroVector(String id, BancoDeDados* banco){
 
-void Lider::ListarMembros(QTableWidget *tabela, String subequipe_lider){
-
-    int tamVetor = 8;
-    int posVetor[] = {0, 1, 4, 6, 5, 10, 9, 8};
-    int largVetor[] = {30, 250, 30, 75, 125, 100, 150, 140};
-
-    QStringList cabecalho = {"ID", "Nome", "Sexo", "Sub-equipe", "Data de Nascimento", "CPF", "Email", "Telefone"};
-
-    String prepare = "SELECT * FROM tb_usuarios WHERE subequipe='" + subequipe_lider + "' ORDER BY nome";
-
-    Listar(tamVetor, posVetor, largVetor, tabela, prepare, cabecalho);
-
+    if (!banco->VerificarAbertura()) {
+        qDebug() << "Banco de dados não está aberto na exclusão!";
+        return false;
+    }else{
+        return banco->DeletarNoVector(id, "tb_usuarios") ;
+    }
 }
 
 
-void Lider::BuscarMembro(String nome, QTableWidget *tabela, String subequipe){
-
-    String prepare;
+void Lider::ListarMembros(QTableWidget *tabela, BancoDeDados* banco){
 
     int tamVetor = 8;
     int posVetor[] = {0, 1, 4, 6, 5, 10, 9, 8};
@@ -168,9 +214,48 @@ void Lider::BuscarMembro(String nome, QTableWidget *tabela, String subequipe){
 
     QStringList cabecalho = {"ID", "Nome", "Sexo", "Sub-equipe", "Data de Nascimento", "CPF", "Email", "Telefone"};
 
-    prepare = "SELECT * FROM tb_usuarios where nome LIKE \"%"+nome+ "%\" and subequipe='"+subequipe+ "'";
+    Listar2(banco,tabela,largVetor,cabecalho);
+}
 
-    Listar(tamVetor, posVetor, largVetor, tabela, prepare, cabecalho);
+
+void Lider::BuscarMembro(String nome, QTableWidget *tabela, std::vector<Membro> vetorMembros){
+
+    int largVetor[] = {30, 250, 30, 75, 125, 100, 150, 140};
+
+    QStringList cabecalho = {"ID", "Nome", "Sexo", "Sub-equipe", "Data de Nascimento", "CPF", "Email", "Telefone"};
+
+    int linha = 0;
+    tabela->setRowCount(0);
+    tabela->setColumnCount(cabecalho.size());
+
+    for(Membro membro : vetorMembros){
+        if(membro.getNome().contains(nome)){
+            tabela->insertRow(linha);
+
+            tabela->setItem(linha, 0, new QTableWidgetItem(QString::number(membro.getId())));
+            tabela->setItem(linha, 1, new QTableWidgetItem(membro.getNome()));
+            tabela->setItem(linha, 2, new QTableWidgetItem(membro.getGenero()));
+            tabela->setItem(linha, 3, new QTableWidgetItem(membro.getSubequipe()));
+            tabela->setItem(linha, 4, new QTableWidgetItem(membro.getDataNascimento()));
+            tabela->setItem(linha, 5, new QTableWidgetItem(membro.getCpf()));
+            tabela->setItem(linha, 6, new QTableWidgetItem(membro.getEmail()));
+            tabela->setItem(linha, 7, new QTableWidgetItem(membro.getTelefone()));
+
+            linha++;
+        }
+
+    }
+
+    for(int i = 0; i< cabecalho.size() ; i++){
+        tabela->setColumnWidth(i, largVetor[i]);
+    }
+
+    tabela->setHorizontalHeaderLabels(cabecalho);
+    tabela->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    tabela->setSelectionBehavior(QAbstractItemView::SelectRows);
+    tabela->verticalHeader()->setVisible(false);
+
+
 }
 
 
@@ -197,13 +282,11 @@ bool Capitao::RebaixarLider(String nome, String id){
 
     BancoDeDados banco;
 
-
     if(banco.Mover(nome, tabelaOrigem, tabelaDestino, "", id)){
         return true;
     }else{
         return false;
     }
-
 }
 
 
@@ -465,6 +548,19 @@ bool BancoDeDados::deletar(String id, String tabela){
     }
 }
 
+bool BancoDeDados::DeletarNoVector(String id, String tabela){
+
+    for (auto it = todosOsMembros.begin(); it != todosOsMembros.end(); ++it) {
+        if (QString::number(it->getId()) == id) {
+
+            todosOsMembros.erase(it);
+            return true;
+            break;
+        }
+    }
+    return false;
+}
+
 
 String BancoDeDados::RetornarIdTabela(String tabela){
     if(tabela == "tb_usuarios"){
@@ -479,10 +575,11 @@ String BancoDeDados::RetornarIdTabela(String tabela){
 bool BancoDeDados::CadastrarMembro(Membro Membro){
 
     QSqlQuery query;
-    query.prepare("insert into tb_usuarios (nome,subequipe,cpf,genero,data_nascimento,email, telefone, username, password) values "
+    query.prepare("insert into tb_usuarios (nome,subequipe,cpf,genero,data_nascimento,email, telefone, username, password, cargo) values "
                     "('"+Membro.getNome().toLower()+"',\""+Membro.getSubequipe()+"\","
                     "\""+Membro.getCpf()+"\",\""+Membro.getGenero()+"\",\""+Membro.getDataNascimento()+"\","
-                    "\""+Membro.getEmail()+"\",\""+Membro.getTelefone()+"\",\""+Membro.getUser().getUsername()+"\",\""+Membro.getUser().getSenha()+"\")");
+                    "\""+Membro.getEmail()+"\",\""+Membro.getTelefone()+""
+                    "\",\""+Membro.getUser().getUsername()+"\",\""+Membro.getUser().getSenha()+"\",\""+Membro.getCargo()+"\")");
 
     if(!VerificarAbertura()){
         AbrirBanco();
@@ -496,19 +593,11 @@ bool BancoDeDados::CadastrarMembro(Membro Membro){
     }
 }
 
-/*
-bool BancoDeDados::GerarRelatorio(){
-    ofstream arquivo;
-
-    arquivo.open("relatorioCrud.txt");
-
-}*/
-
-void BancoDeDados::ListarMembros(){
+void BancoDeDados::ListarMembros(String subequipe){
     std::vector<Membro> todosOsMembros;
 
     QSqlQuery query;
-    query.prepare("SELECT * FROM tb_usuarios");
+    query.prepare("SELECT * FROM tb_usuarios WHERE subequipe='"+subequipe+"' ORDER BY nome");
     if(query.exec()){
         while(query.next()){
             Membro membro;
@@ -527,9 +616,6 @@ void BancoDeDados::ListarMembros(){
             todosOsMembros.push_back(membro);
         }
     }
-
     this->todosOsMembros = todosOsMembros;
 }
-
-
 

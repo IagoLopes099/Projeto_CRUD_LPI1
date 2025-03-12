@@ -383,10 +383,10 @@ D:/ProjetosQTCreator/Prog1/Projeto_Prog1/mainwindow.h
  mdp:D:/ProjetosQTCreator/Prog1/Projeto_Prog1/Equipe.h
  mdp:D:/ProjetosQTCreator/Prog1/Projeto_Prog1/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/Projeto_Prog1_autogen/moc_predefs.h
  mdp:D:/ProjetosQTCreator/Prog1/Projeto_Prog1/mainwindow.h
-D:/ProjetosQTCreator/Prog1/Projeto_Prog1/main.cpp
 D:/ProjetosQTCreator/Prog1/Projeto_Prog1/mainwindow.cpp
  uic:./ui_mainwindow.h
 D:/ProjetosQTCreator/Prog1/Projeto_Prog1/usuario.h
+D:/ProjetosQTCreator/Prog1/Projeto_Prog1/main.cpp
 D:/ProjetosQTCreator/Prog1/Projeto_Prog1/buscarjanela.h
  mmc:Q_OBJECT
  mdp:C:/Qt/6.8.1/mingw_64/include/QtCore/q20functional.h

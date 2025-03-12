@@ -10,24 +10,20 @@
 #include "Equipe.h"
 
 
-MainWindow::MainWindow(QWidget *parent, String subequipe_lider)
+MainWindow::MainWindow(QWidget *parent, String subequipelider)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    , subequipeLider(subequipe_lider)
+    , subequipeLider(subequipelider)
     , banco()
+    , lider(subequipelider)
 {
     ui->setupUi(this);
 
     banco.AbrirBanco();
+    banco.ListarMembros(subequipeLider);
 
-    Lider Lider;
-    Lider.ListarMembros(ui->listarMembros, subequipeLider);
+    lider.ListarMembros(ui->listarMembros, &banco);
 
-    banco.ListarMembros();
-
-    for(Membro membro : banco.getMembros() ){
-        qDebug() << "nome: " << membro.getNome();
-    }
 
 }
 
@@ -87,15 +83,41 @@ void MainWindow::on_CadastrarInputButton_clicked()
     std::vector<String> campos = {nome, CPF, aniversario, email, telefone, username, senha};
 
 
+    /*VERIFICAÇÃO DE CAMPOS VAZIOS*/
     for(const auto& campo : campos){
-        if(campo.isEmpty()){
+        if(campo.isEmpty() || CPF == "..-"){
             QMessageBox::critical(this, "Erro", "Preencha todos os campos obrigatórios!");
             return;
         }
     }
 
+    /*VERIFICAÇÃO DE DUPLICATAS DE CPF*/
+    for(int i = 0; i <banco.getMembros().size() ; i++){
+        if(banco.getMembros()[i].getCpf() == CPF){
+            QMessageBox::critical(this, "Erro", "CPF já existente no momento!");
+            return;
+        }
+    }
 
-    String resultadoCb = "";
+    /*VERIFICAÇÃO DO DOMINIO DO E-MAIL*/
+    QStringList dominios = {"@gmail.com", "@outlook.com", "@yahoo.com"};
+    bool resposta;
+
+    for(int i = 0; i < dominios.size(); i ++){
+
+        if(email.contains(dominios[i])) {
+            resposta = true;
+            break;
+        }
+        resposta = false;
+    }
+
+    if(!resposta){
+        QMessageBox::warning(this,"Alerta","Dominio inválido.");
+        return;
+    }
+
+
     String genero = ui->GeneroComboBox->currentText();
     if(genero == "Masculino"){
         genero = "M";
@@ -106,46 +128,16 @@ void MainWindow::on_CadastrarInputButton_clicked()
     }
 
 
-    /*
-    if(ui->AdminCb->isChecked()){
-        resultadoCb+="Admin";
-        ui->AdminCb->setAutoExclusive(false);
-        ui->AdminCb->setChecked(false);
-        ui->AdminCb->setAutoExclusive(true);
-
-    }else if(ui->PowertrainCb->isChecked()){
-        resultadoCb+="powertrain";
-        ui->PowertrainCb->setAutoExclusive(false);
-        ui->PowertrainCb->setChecked(false);
-        ui->PowertrainCb->setAutoExclusive(true);
-
-    }else if(ui->DinamicaCb->isChecked()){
-        resultadoCb+="dinamica veicular";
-        ui->DinamicaCb->setAutoExclusive(false);
-        ui->DinamicaCb->setChecked(false);
-        ui->DinamicaCb->setAutoExclusive(true);
-
-    }else if(ui->DrivetrainCb->isChecked()){
-        resultadoCb+="drivetrain";
-        ui->DrivetrainCb->setAutoExclusive(false);
-        ui->DrivetrainCb->setChecked(false);
-        ui->DrivetrainCb->setAutoExclusive(true);
-
-    }else if(ui->EletricaCb->isChecked()){
-        resultadoCb+="elétrica";
-        ui->EletricaCb->setAutoExclusive(false);
-        ui->EletricaCb->setChecked(false);
-        ui->EletricaCb->setAutoExclusive(true);
-
-    }*/
-
-
     User user(username,senha);
-    Membro membro(nome, CPF,resultadoCb, genero, aniversario, email, telefone);
+
+    Membro membro(nome, CPF,subequipeLider, genero, aniversario, email, telefone,"membro",lider.getLastId(&banco) + 1, user);
+
     Lider lider(membro);
 
     if(lider.CadastrarMembro(&banco)){
-        QMessageBox::information(this,"Dados Digitados:","Usuário cadastrado com sucesso!");
+        QMessageBox::information(this,"","Usuário cadastrado com sucesso!");
+        banco.getReferenciaMembro().push_back(membro);       /*ADICIONADO AO VETOR*/
+
         ui->NomeEditLineCadastro->clear();
         ui->CPFEditLine->clear();
         ui->telefoneEditLine->clear();
@@ -155,6 +147,8 @@ void MainWindow::on_CadastrarInputButton_clicked()
     }else{
         QMessageBox::critical(this, "Erro no cadastro","Membro não cadastrado!");
     }
+
+
 }
 
 void MainWindow::on_DeletarButtonHP_clicked()
@@ -163,27 +157,34 @@ void MainWindow::on_DeletarButtonHP_clicked()
     if(linha < 0){
         return;
     }
+
     String id = ui->listarMembros->item(linha,0)->text();
 
-    Lider lider;
-
-    if(lider.DeletarMembro(id, &banco)){
+    if(lider.DeletarMembroVector(id, &banco)){
         QMessageBox::StandardButton resposta = QMessageBox::question(this, "","Tem certeza que deseja excluir?", QMessageBox::Yes|QMessageBox::Cancel);
         if(resposta == QMessageBox::Yes){
-            QMessageBox::information(this, "","Usuário deletado");
-            ui->listarMembros->removeRow(linha);
+
+            qDebug() << "deletado do vector!";
+
+            /*DELETANDO DO BANCO DE DADOS*/
+            if(lider.DeletarMembro(id, &banco)){
+                QMessageBox::information(this, "","Usuário deletado");
+                ui->listarMembros->removeRow(linha);
+            }else{
+                QMessageBox::warning(this,"Erro","Não foi possivel deletar o usuário do banco de dados");
+            }
         }
     }else{
-        QMessageBox::warning(this,"Erro","Não foi possivel deletar o usuário");
+        QMessageBox::warning(this,"Erro","Não foi possivel deletar o usuário no VECTOR");
     }
-
 }
 
 
 void MainWindow::on_AtualizarButtonHP_clicked()
 {
-    Lider Membro;
-    Membro.ListarMembros(ui->listarMembros, subequipeLider);
+    //banco.ListarMembros(subequipeLider);
+    lider.ListarMembros(ui->listarMembros, &banco);
+
 }
 
 
@@ -193,13 +194,8 @@ void MainWindow::on_BuscarButtonHP_clicked()
 
     nome = nome.toLower();
 
-    Lider Membro;
+    lider.BuscarMembro(nome,ui->listarMembros, banco.getMembros());
 
-    Membro.BuscarMembro(nome,ui->listarMembros, subequipeLider);
-    /*
-    if(!Membro.BuscarMembro(nome,ui->listarMembros)){
-        QMessageBox::warning(this,"Erro", "Algo inesperado ocorreu!");
-    }*/
 }
 
 

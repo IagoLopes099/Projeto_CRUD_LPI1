@@ -9,27 +9,6 @@ class BancoDeDados;
 
 using String = QString;
 
-class DataNascimento{
-private:
-    int dia;
-    int mes;
-    int ano;
-public:
-    DataNascimento(int d, int m, int a){
-        this->dia = d;
-        this->mes = m;
-        this->ano = a;
-    };
-
-    void setDia(int d){dia = d;}
-    void setMes(int m){mes = m;}
-    void setAno(int a){ano = a;}
-
-    int getDia(){return dia;}
-    int getMes(){return mes;}
-    int getAno(){return ano;}
-};
-
 class User{
 private:
     String username;
@@ -60,9 +39,9 @@ protected:
 public:
     /*METODOS CONSTRUTORES*/
     Membro();
-    Membro(String nome, String cpf, String subequipe, String genero, String dataNascimento, String email, String telefone);
-    Membro(String nome, String cpf, String subequipe, String genero, String dataNascimento, String email, String telefone, User user) :
-        Membro(nome, cpf, subequipe, genero, dataNascimento, email, telefone){
+    Membro(String nome, String cpf, String subequipe, String genero, String dataNascimento, String email, String telefone, String cargo, int id);
+    Membro(String nome, String cpf, String subequipe, String genero, String dataNascimento, String email, String telefone, String cargo,int id, User user) :
+        Membro(nome, cpf, subequipe, genero, dataNascimento, email, telefone, cargo, id){
         this->user = user;
         setCargo("membro");
     };
@@ -100,14 +79,17 @@ class Lider : public Membro{
 private:
     Membro membro;
     int dataPromocao;
+    int lastId;
 public:
     /*METODOS CONSTRUTORES*/
     Lider(){};
+    Lider(String subequipe){this->subequipe = subequipe;};
     Lider(Membro membro): membro(membro) {};
-    Lider(String nome, String cpf, String subequipe, String genero, String dataNascimento, String email, String telefone, int dataPromocao);
+    Lider(String nome, String cpf, String subequipe, String genero, String dataNascimento, String email, String telefone, String cargo,int id, int dataPromocao);
 
     /*METODOS GET*/
     int getDataPromocao() {return dataPromocao;}
+    int getLastId(BancoDeDados* banco);
 
     /*METODOS SET*/
     void SetDataPromocao(int d);
@@ -116,8 +98,11 @@ public:
     bool CadastrarMembro(BancoDeDados* banco);
     bool EditarMembro(String id, Membro Membro);
     bool DeletarMembro(String id, BancoDeDados* banco);
-    void ListarMembros(QTableWidget *tabela, String subequipe);
-    void BuscarMembro(String nome, QTableWidget *tabela, String subequipe);
+    void ListarMembros(QTableWidget *tabela, BancoDeDados* banco);
+    void ListarMembrosBd(QTableWidget *tabela, String subequipe);
+    void BuscarMembro(String nome, QTableWidget *tabela, std::vector<Membro>);
+
+    bool DeletarMembroVector(String id, BancoDeDados* banco);
 
 
 };//FIM CLASSE LIDER
@@ -159,16 +144,16 @@ public:
     String getUsername(){return username;};
     String getPassword(){return password;};
     Membro getMembro(){return membro;};
+    std::vector<Membro>& getReferenciaMembro(){return todosOsMembros;};
     std::vector<Membro> getMembros(){return todosOsMembros;};
 
     //METODOS CRUD
     void ListarId(int id);
     void ListarNome(String nome);
-   // std::vector<Membro> ListarMembros();
-    void ListarMembros();
+    void ListarMembros(String subequipe);
     bool deletar(String id, String tabela);
     bool CadastrarMembro(Membro Membro);
-
+    bool DeletarNoVector(String id, String tabela);
 
 
     //OUTROS METODOS
