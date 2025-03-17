@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_Projeto_Prog1_FILE /home/iago/QtProjets/Projeto_CRUD_LPI1/build/Desktop_Qt_6_8_2-Debug/CMakeFiles/Projeto_Prog1)
+set(__QT_DEPLOY_TARGET_Projeto_Prog1_TYPE EXECUTABLE)

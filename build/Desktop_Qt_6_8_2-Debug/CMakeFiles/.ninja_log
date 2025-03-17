@@ -1,0 +1,16 @@
+# ninja log v5
+2	583	1741827518780342853	Projeto_Prog1_autogen/timestamp	d7d83155359aae47
+2	583	1741827518780342853	Projeto_Prog1_autogen/mocs_compilation.cpp	d7d83155359aae47
+2	583	1741827518780342853	/home/iago/QtProjets/Projeto_CRUD_LPI1/build/Desktop_Qt_6_8_2-Debug/CMakeFiles/Projeto_Prog1_autogen/timestamp	d7d83155359aae47
+2	583	1741827518780342853	/home/iago/QtProjets/Projeto_CRUD_LPI1/build/Desktop_Qt_6_8_2-Debug/CMakeFiles/Projeto_Prog1_autogen/mocs_compilation.cpp	d7d83155359aae47
+583	639	1741827518841343418	Projeto_Prog1_autogen/EWIEGA46WW/qrc_Projeto_Prog1.cpp	5ef819bd892127f
+583	639	1741827518841343418	/home/iago/QtProjets/Projeto_CRUD_LPI1/build/Desktop_Qt_6_8_2-Debug/CMakeFiles/Projeto_Prog1_autogen/EWIEGA46WW/qrc_Projeto_Prog1.cpp	5ef819bd892127f
+640	1408	1741827519608350531	CMakeFiles/Projeto_Prog1.dir/Projeto_Prog1_autogen/EWIEGA46WW/qrc_Projeto_Prog1.cpp.o	758b8bbd6eb4795c
+639	3390	1741827521581368832	CMakeFiles/Projeto_Prog1.dir/Equipe.cpp.o	66793fac68f656ef
+639	3700	1741827521759370484	CMakeFiles/Projeto_Prog1.dir/Projeto_Prog1_autogen/mocs_compilation.cpp.o	c9c523b19eb37e3d
+639	3703	1741827521892371718	CMakeFiles/Projeto_Prog1.dir/main.cpp.o	2f5d2af8648e374a
+640	3891	1741827522060373276	CMakeFiles/Projeto_Prog1.dir/cappage.cpp.o	e947a51dd491f935
+639	3938	1741827522097373620	CMakeFiles/Projeto_Prog1.dir/editarJanela.cpp.o	e06d21e285b90c92
+640	4050	1741827522179374381	CMakeFiles/Projeto_Prog1.dir/loginpage.cpp.o	a1a79630a90a1df1
+639	4231	1741827522302375522	CMakeFiles/Projeto_Prog1.dir/mainwindow.cpp.o	d26f8d82ebd4117b
+4231	4543	1741827522744379624	Projeto_Prog1	cd7813a696c9ed08

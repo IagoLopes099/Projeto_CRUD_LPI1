@@ -1,0 +1,36 @@
+{
+	"BUILD_DIR" : "/home/iago/QtProjets/Projeto_CRUD_LPI1/build/Desktop_Qt_6_8_2-Debug/CMakeFiles/Projeto_Prog1_autogen",
+	"CMAKE_BINARY_DIR" : "/home/iago/QtProjets/Projeto_CRUD_LPI1/build/Desktop_Qt_6_8_2-Debug/CMakeFiles",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/iago/QtProjets/Projeto_CRUD_LPI1/build/Desktop_Qt_6_8_2-Debug/CMakeFiles",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/iago/QtProjets/Projeto_CRUD_LPI1",
+	"CMAKE_SOURCE_DIR" : "/home/iago/QtProjets/Projeto_CRUD_LPI1",
+	"GENERATOR" : "Ninja",
+	"INCLUDE_DIR" : "/home/iago/QtProjets/Projeto_CRUD_LPI1/build/Desktop_Qt_6_8_2-Debug/CMakeFiles/Projeto_Prog1_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/iago/QtProjets/Projeto_CRUD_LPI1/debug/promocaorebaixamentoWhite.png",
+		"/home/iago/QtProjets/Projeto_CRUD_LPI1/debug/editar.png",
+		"/home/iago/QtProjets/Projeto_CRUD_LPI1/debug/homeWhite.png",
+		"/home/iago/QtProjets/Projeto_CRUD_LPI1/debug/atividades.png",
+		"/home/iago/QtProjets/Projeto_CRUD_LPI1/debug/buscarWhite.png",
+		"/home/iago/QtProjets/Projeto_CRUD_LPI1/debug/buscar.png",
+		"/home/iago/QtProjets/Projeto_CRUD_LPI1/debug/deletarWhite.png",
+		"/home/iago/QtProjets/Projeto_CRUD_LPI1/debug/grafico.png",
+		"/home/iago/QtProjets/Projeto_CRUD_LPI1/debug/promocaorebaixamento.png",
+		"/home/iago/QtProjets/Projeto_CRUD_LPI1/debug/atualizarWhite.png",
+		"/home/iago/QtProjets/Projeto_CRUD_LPI1/debug/adicionar.png",
+		"/home/iago/QtProjets/Projeto_CRUD_LPI1/debug/editarWhite.png",
+		"/home/iago/QtProjets/Projeto_CRUD_LPI1/debug/home.png",
+		"/home/iago/QtProjets/Projeto_CRUD_LPI1/debug/deletar.png"
+	],
+	"LOCK_FILE" : "/home/iago/QtProjets/Projeto_CRUD_LPI1/build/Desktop_Qt_6_8_2-Debug/CMakeFiles/CMakeFiles/Projeto_Prog1_autogen.dir/AutoRcc_Projeto_Prog1_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "Projeto_Prog1" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_Projeto_Prog1.cpp",
+	"RCC_EXECUTABLE" : "/home/iago/Qt/6.8.2/gcc_64/libexec/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/iago/QtProjets/Projeto_CRUD_LPI1/build/Desktop_Qt_6_8_2-Debug/CMakeFiles/CMakeFiles/Projeto_Prog1_autogen.dir/AutoRcc_Projeto_Prog1_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/home/iago/QtProjets/Projeto_CRUD_LPI1/Projeto_Prog1.qrc",
+	"VERBOSITY" : 0
+}
