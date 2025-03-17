@@ -1,0 +1,9 @@
+/home/iago/QtProjets/Projeto_CRUD_LPI1/build/Desktop_Qt_6_8_2-Debug/CMakeFiles/CMakeFiles/Projeto_Prog1.dir
+/home/iago/QtProjets/Projeto_CRUD_LPI1/build/Desktop_Qt_6_8_2-Debug/CMakeFiles/CMakeFiles/edit_cache.dir
+/home/iago/QtProjets/Projeto_CRUD_LPI1/build/Desktop_Qt_6_8_2-Debug/CMakeFiles/CMakeFiles/rebuild_cache.dir
+/home/iago/QtProjets/Projeto_CRUD_LPI1/build/Desktop_Qt_6_8_2-Debug/CMakeFiles/CMakeFiles/list_install_components.dir
+/home/iago/QtProjets/Projeto_CRUD_LPI1/build/Desktop_Qt_6_8_2-Debug/CMakeFiles/CMakeFiles/install.dir
+/home/iago/QtProjets/Projeto_CRUD_LPI1/build/Desktop_Qt_6_8_2-Debug/CMakeFiles/CMakeFiles/install/local.dir
+/home/iago/QtProjets/Projeto_CRUD_LPI1/build/Desktop_Qt_6_8_2-Debug/CMakeFiles/CMakeFiles/install/strip.dir
+/home/iago/QtProjets/Projeto_CRUD_LPI1/build/Desktop_Qt_6_8_2-Debug/CMakeFiles/CMakeFiles/Projeto_Prog1_autogen_timestamp_deps.dir
+/home/iago/QtProjets/Projeto_CRUD_LPI1/build/Desktop_Qt_6_8_2-Debug/CMakeFiles/CMakeFiles/Projeto_Prog1_autogen.dir
