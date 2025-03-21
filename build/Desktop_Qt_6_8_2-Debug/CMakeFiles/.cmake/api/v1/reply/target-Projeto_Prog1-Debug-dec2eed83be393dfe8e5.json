@@ -22,7 +22,8 @@
 			"set_property",
 			"find_dependency",
 			"_qt_internal_find_third_party_dependencies",
-			"_qt_internal_find_qt_dependencies"
+			"_qt_internal_find_qt_dependencies",
+			"include_directories"
 		],
 		"files" : 
 		[
@@ -47,7 +48,7 @@
 			{
 				"command" : 3,
 				"file" : 1,
-				"line" : 26,
+				"line" : 40,
 				"parent" : 0
 			},
 			{
@@ -71,13 +72,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 76,
+				"line" : 59,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 59,
+				"line" : 52,
 				"parent" : 0
 			},
 			{
@@ -207,6 +208,12 @@
 				"file" : 0,
 				"line" : 647,
 				"parent" : 2
+			},
+			{
+				"command" : 13,
+				"file" : 1,
+				"line" : 15,
+				"parent" : 0
 			}
 		]
 	},
@@ -247,6 +254,10 @@
 				{
 					"backtrace" : 0,
 					"path" : "/home/iago/QtProjets/Projeto_CRUD_LPI1/build/Desktop_Qt_6_8_2-Debug/CMakeFiles/Projeto_Prog1_autogen/include"
+				},
+				{
+					"backtrace" : 31,
+					"path" : "/home/iago/QtProjets/Projeto_CRUD_LPI1/include"
 				},
 				{
 					"backtrace" : 30,
@@ -294,11 +305,10 @@
 				0,
 				1,
 				2,
-				7,
-				12,
-				14,
-				17,
-				24
+				5,
+				11,
+				13,
+				16
 			]
 		}
 	],
@@ -396,11 +406,10 @@
 				0,
 				1,
 				2,
-				7,
-				12,
-				14,
-				17,
-				24
+				5,
+				11,
+				13,
+				16
 			]
 		},
 		{
@@ -409,15 +418,15 @@
 			[
 				3,
 				6,
+				8,
 				9,
 				10,
-				11,
-				13,
-				16,
+				12,
+				15,
+				18,
 				19,
 				20,
-				21,
-				22
+				21
 			]
 		},
 		{
@@ -425,31 +434,23 @@
 			"sourceIndexes" : 
 			[
 				4,
-				8,
-				15,
-				18
-			]
-		},
-		{
-			"name" : "Resources",
-			"sourceIndexes" : 
-			[
-				5
+				7,
+				14,
+				17
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				23
+				22
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				25,
-				26
+				23
 			]
 		}
 	],
@@ -471,141 +472,123 @@
 		{
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
-			"path" : "mainwindow.cpp",
+			"path" : "src/mainwindow.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 4,
-			"path" : "mainwindow.h",
+			"path" : "include/mainwindow.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
-			"path" : "mainwindow.ui",
+			"path" : "forms/mainwindow.ui",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 4,
-			"path" : "Projeto_Prog1.qrc",
-			"sourceGroupIndex" : 3
+			"compileGroupIndex" : 0,
+			"path" : "src/editarJanela.cpp",
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 4,
-			"path" : "editarJanela.h",
+			"path" : "include/editarJanela.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "forms/editarJanela.ui",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"path" : "include/Equipe.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "include/Subequipe.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "include/Atividade.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
-			"path" : "editarJanela.cpp",
+			"path" : "src/Equipe.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 4,
-			"path" : "editarJanela.ui",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 4,
-			"path" : "Equipe.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 4,
-			"path" : "Subequipe.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 4,
-			"path" : "Atividade.h",
+			"path" : "include/loginpage.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
-			"path" : "Equipe.cpp",
+			"path" : "src/loginpage.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 4,
-			"path" : "loginpage.h",
+			"path" : "forms/loginpage.ui",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"path" : "include/cappage.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
-			"path" : "loginpage.cpp",
+			"path" : "src/cappage.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 4,
-			"path" : "loginpage.ui",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 4,
-			"path" : "cappage.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 4,
-			"compileGroupIndex" : 0,
-			"path" : "cappage.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 4,
-			"path" : "cappage.ui",
+			"path" : "forms/cappage.ui",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_8_2-Debug/CMakeFiles/Projeto_Prog1_autogen/include/ui_mainwindow.h",
+			"path" : "build/Desktop_Qt_6_8_2-Debug/CMakeFiles/Projeto_Prog1_autogen/include/forms/ui_mainwindow.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_8_2-Debug/CMakeFiles/Projeto_Prog1_autogen/include/ui_editarJanela.h",
+			"path" : "build/Desktop_Qt_6_8_2-Debug/CMakeFiles/Projeto_Prog1_autogen/include/forms/ui_editarJanela.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_8_2-Debug/CMakeFiles/Projeto_Prog1_autogen/include/ui_loginpage.h",
+			"path" : "build/Desktop_Qt_6_8_2-Debug/CMakeFiles/Projeto_Prog1_autogen/include/forms/ui_loginpage.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_8_2-Debug/CMakeFiles/Projeto_Prog1_autogen/include/ui_cappage.h",
+			"path" : "build/Desktop_Qt_6_8_2-Debug/CMakeFiles/Projeto_Prog1_autogen/include/forms/ui_cappage.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
 			"path" : "build/Desktop_Qt_6_8_2-Debug/CMakeFiles/Projeto_Prog1_autogen/timestamp",
-			"sourceGroupIndex" : 4
-		},
-		{
-			"backtrace" : 0,
-			"compileGroupIndex" : 0,
-			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_8_2-Debug/CMakeFiles/Projeto_Prog1_autogen/EWIEGA46WW/qrc_Projeto_Prog1.cpp",
-			"sourceGroupIndex" : 0
+			"sourceGroupIndex" : 3
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
 			"path" : "build/Desktop_Qt_6_8_2-Debug/CMakeFiles/Projeto_Prog1_autogen/timestamp.rule",
-			"sourceGroupIndex" : 5
-		},
-		{
-			"backtrace" : 0,
-			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_8_2-Debug/CMakeFiles/Projeto_Prog1_autogen/EWIEGA46WW/qrc_Projeto_Prog1.cpp.rule",
-			"sourceGroupIndex" : 5
+			"sourceGroupIndex" : 4
 		}
 	],
 	"type" : "EXECUTABLE"
